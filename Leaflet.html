@@ -48,9 +48,10 @@ L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000"
 L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(mymap);
 var coolPlaces = new L.LayerGroup();
 var flaco = new L.LayerGroup();
+var eia= new L.LayerGroup();
 	
-var overlays = {"Interesting places": coolPlaces,
-			    "Proyectos DIA": flaco};
+var overlays =
+{"Interesting places": coolPlaces,"Proyectos DIA": flaco,"Proyectos EIA": eia};
 
 
 L.control.layers(overlays).addTo(mymap);
@@ -64,6 +65,7 @@ L.control.layers(overlays).addTo(mymap);
 
 <script src= "marcadores.js"> </script>
 <script src="diaseia.js"></script>
+<script src="eiaseia.js"></script>
 
 </body>
 </html>
