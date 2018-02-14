@@ -47,52 +47,23 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000", dashArray: '3',fill: "false", fillOpacity: 0.1}).addTo(mymap);
 L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(mymap);
 var coolPlaces = new L.LayerGroup();
-var overlays = {"Interesting places": coolPlaces};
+var flaco = new L.LayerGroup();
+	
+var overlays = {"Interesting places": coolPlaces,
+			    "Proyectos DIA": flaco};
+
+
 L.control.layers(overlays).addTo(mymap);
 
 </script>
 
 <script>
 	
-	var SEIA = L.geoCsv('https://docs.google.com/spreadsheets/d/1xZ-GxcvD1AuhX4HNu-Fj4AZO20GKbr7_t720XQkKPDQ/edit#gid=1806900358', {firstLineTitles: true, fieldSeparator: ',',
-	onEachFeature: function (feature, layer) {
-		var popup = '';
-		for (var clave in feature.properties) {
-			var title = SEIA.getPropertyTitle(clave);
-			popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
-		}
-		layer.bindPopup(popup);
-	},
-	pointToLayer: function (feature, latlng) {
-		return L.marker(latlng, {
-			icon:L.icon({
-				iconUrl: 'marcador-bankia.png',
-				shadowUrl: 'marker-shadow.png',
-				iconSize: [25,41],
-				shadowSize:   [41, 41],
-				shadowAnchor: [13, 20]
-			})
-		});
-	},
-	firstLineTitles: true
-});
-$.ajax ({
-	type:'GET',
-	dataType:'text',
-	url:'https://docs.google.com/spreadsheets/d/1xZ-GxcvD1AuhX4HNu-Fj4AZO20GKbr7_t720XQkKPDQ/edit#gid=1806900358',
-   error: function() {
-     alert('No se pudieron cargar los datos');
-   },
-	
-	success: function(csv) {
-    SEIA.addData(csv);
-    mymap.addLayer(SEIA);
-  }
-});
+
 	</script>
 
 <script src= "marcadores.js"> </script>
-
+<script src="diaseia.js"></script>
 
 </body>
 </html>

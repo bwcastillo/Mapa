@@ -31,8 +31,9 @@ if (feature.properties && feature.properties.BARRIO)
 { 
 layer.bindPopup(feature.properties.BARRIO); 
 } 
-}
+};
 
+new L.LayerGroup();
 
 
 

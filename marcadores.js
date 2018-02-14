@@ -12,11 +12,11 @@ var myIcon = L.icon({
 });
 
 
-L.marker([-33.5359312, -70.789277],{icon: myIcon}).bindPopup("popupContent").openPopup().addTo(coolPlaces).addTo(coolPlaces);
+L.marker([-33.5359312, -70.789277],{icon: myIcon}).bindPopup("<b>Negrita</b><br>Maraqueta<br><b>Barrio</b><br>El mas piante").openPopup().addTo(coolPlaces);
 
-L.marker([-33.5216322, -70.758993],{icon: myIcon}).bindPopup("popupContent").openPopup().addTo(coolPlaces).addTo(coolPlaces);
+L.marker([-33.5216322, -70.758993],{icon: myIcon}).bindPopup("<b>Negrita</b><br>Maraqueta<br><b>Barrio</b><br>El mas piante").openPopup().addTo(coolPlaces);
 
-L.marker([-33.5158732, -70.7431477],{icon: myIcon}).bindPopup("popupContent").openPopup().addTo(coolPlaces);
+L.marker([-33.5158732, -70.7431477],{icon: myIcon}).bindPopup("<b>Negrita</b><br>Maraqueta<br><b>Barrio</b><br>El mas piante").openPopup().addTo(coolPlaces);
 
 L.marker([-33.5216322, -70.758993]).addTo(coolPlaces);
 L.marker([-33.4824437, -70.7381859]).addTo(coolPlaces);
