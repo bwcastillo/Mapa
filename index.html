@@ -38,14 +38,14 @@
 <script> //TILE MAP 
 
 var mymap = L.map('mapid',{maxBounds:[
-    [-33.427883, -70.935382],
-    [-33.586710, -70.718632]
-]}).setView([-33.5359312, -70.789277], 11);
+    [-33.328620, -70.939942],
+    [-33.619460, -70.700762]
+]}).setView([-33.532898, -70.756266], 12); /*-33.5359312, -70.789277*/
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Autor: Bryan Castillo M.', minZoom:13 ,maxZoom: 17, id: 'mapbox.streets',accessToken: 'pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'}).addTo(mymap);</script>
 
 <script>//COMPONENTS
 L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000", dashArray: '3',fill: "false", fillOpacity: 0.1}).addTo(mymap);
-L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(mymap);
+
 	
 var flaco = new L.LayerGroup();
 var eia= new L.LayerGroup();
@@ -62,11 +62,14 @@ var edamjun= new L.LayerGroup();
 var edAmMay= new L.LayerGroup();
 var edAmAbr= new L.LayerGroup();
 var edAmMar= new L.LayerGroup();
+var bicis= new L.LayerGroup();
+	
 var overlays =
-{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Biblio verdes": BiblVerd, "Ecosedes":EcoSed, "Puntos limpios": PtoLim, "Mini punto limpio": MinPtoVer, "Educacion ambiental marzo": edAmMar, "Educacion ambiental mayo":edAmMay, "Educacion ambiental junio":edamjun, "Educacion ambiental julio":edamjul, "Educacion ambiental agosto":edAmAgo, "Educacion ambiental septiembre":edAmSep, "Educacion ambiental octubre":edAmOct};
+{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Biblio verdes": BiblVerd, "Ecosedes":EcoSed, "Puntos limpios": PtoLim, "Mini punto limpio": MinPtoVer, "Educacion ambiental marzo": edAmMar, "Educacion ambiental mayo":edAmMay, "Educacion ambiental junio":edamjun, "Educacion ambiental julio":edamjul, "Educacion ambiental agosto":edAmAgo, "Educacion ambiental septiembre":edAmSep, "Educacion ambiental octubre":edAmOct, "Ciclovias": bicis};
 
 
 L.control.layers(overlays).addTo(mymap);
+	L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(bicis);
 
 </script>
 
@@ -86,5 +89,6 @@ L.control.layers(overlays).addTo(mymap);
 <script src="edambabr.js"></script>
 <script src="ecosede.js"></script>
 <script src="biblioverde.js"></script>
+
 </body>
 </html>
