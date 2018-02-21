@@ -46,12 +46,24 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 <script>//COMPONENTS
 L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000", dashArray: '3',fill: "false", fillOpacity: 0.1}).addTo(mymap);
 L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(mymap);
-var coolPlaces = new L.LayerGroup();
+	
 var flaco = new L.LayerGroup();
 var eia= new L.LayerGroup();
-	
+var EEdPtoVer= new L.LayerGroup();
+var BiblVerd= new L.LayerGroup();
+var EcoSed= new L.LayerGroup();
+var PtoLim= new L.LayerGroup();
+var MinPtoVer= new L.LayerGroup();
+var edAmOct= new L.LayerGroup();
+var edAmSep= new L.LayerGroup();
+var edAmAgo= new L.LayerGroup();
+var edamjul= new L.LayerGroup();
+var edamjun= new L.LayerGroup();
+var edAmMay= new L.LayerGroup();
+var edAmAbr= new L.LayerGroup();
+var edAmMar= new L.LayerGroup();
 var overlays =
-{"Interesting places": coolPlaces,"Proyectos DIA": flaco,"Proyectos EIA": eia};
+{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Biblio verdes": BiblVerd, "Ecosedes":EcoSed, "Puntos limpios": PtoLim, "Mini punto limpio": MinPtoVer, "Educacion ambiental marzo": edAmMar, "Educacion ambiental mayo":edAmMay, "Educacion ambiental junio":edamjun, "Educacion ambiental julio":edamjul, "Educacion ambiental agosto":edAmAgo, "Educacion ambiental septiembre":edAmSep, "Educacion ambiental octubre":edAmOct};
 
 
 L.control.layers(overlays).addTo(mymap);
@@ -59,9 +71,20 @@ L.control.layers(overlays).addTo(mymap);
 </script>
 
 
-<script src= "marcadores.js"> </script>
 <script src="diaseia.js"></script>
 <script src="eiaseia.js"></script>
-
+<script src="puntolimpio.js"></script>
+<script src="miniptoverd.js"></script>
+<script src="estamb.js"></script>
+<script src="edambsep.js"></script>
+<script src="edamboct.js"></script>
+<script src="edambmay.js"></script>
+<script src="edambjun.js"></script>
+<script src="edambjul.js"></script>
+<script src="edambamar.js"></script>
+<script src="edambago.js"></script>
+<script src="edambabr.js"></script>
+<script src="ecosede.js"></script>
+<script src="biblioverde.js"></script>
 </body>
 </html>
