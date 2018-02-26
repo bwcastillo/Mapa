@@ -68,7 +68,7 @@ var overlays =
 {"Proyectos DIA": flaco,"Proyectos EIA": eia, "Biblio verdes": BiblVerd, "Ecosedes":EcoSed, "Puntos limpios": PtoLim, "Mini punto limpio": MinPtoVer, "Educacion ambiental marzo": edAmMar, "Educacion ambiental mayo":edAmMay, "Educacion ambiental junio":edamjun, "Educacion ambiental julio":edamjul, "Educacion ambiental agosto":edAmAgo, "Educacion ambiental septiembre":edAmSep, "Educacion ambiental octubre":edAmOct, "Ciclovias": bicis};
 
 
-L.control.layers(overlays).addTo(mymap);
+L.control.layers(overlays).addTo(mymap).expand();
 L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(bicis);
 
 </script>
