@@ -25,14 +25,16 @@
    <script type="text/javascript" src="ciclovia.js"></script>
    <script type="text/javascript" src="barrios.js"></script>
  <script src="https://code.jquery.com/jquery-2.1.4.min.js">//JQUERY </script>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 
+<style>#mapid { height: 800px; }</style>
 </head>
 	
 	
 <body>
 <header id= "cabecera" > <h1 >Mapa subdirección gestión ambiental</h1> </header>
 <div id="mapid"></div>
-<style>#mapid { height: 800px; }</style>
+
 
 
 <script> //TILE MAP 
@@ -45,8 +47,9 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 <script>//COMPONENTS
 L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000", dashArray: '3',fill: "false", fillOpacity: 0.1}).addTo(mymap);
-
 	
+var marcadores= "";
+var grupo= new L.LayerGroup();
 var flaco = new L.LayerGroup();
 var eia= new L.LayerGroup();
 var EEdPtoVer= new L.LayerGroup();
@@ -63,11 +66,47 @@ var edAmMay= new L.LayerGroup();
 var edAmAbr= new L.LayerGroup();
 var edAmMar= new L.LayerGroup();
 var bicis= new L.LayerGroup();
-	
+var Campvid= new L.LayerGroup();
+var coord1= " ";
+var markers="";
+
+
 var overlays =
-{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educacion ambiental marzo": edAmMar, "Educacion ambiental mayo":edAmMay, "Educacion ambiental junio":edamjun, "Educacion ambiental julio":edamjul, "Educacion ambiental agosto":edAmAgo, "Educacion ambiental septiembre":edAmSep, "Educacion ambiental octubre":edAmOct, "Ciclovias": bicis};
+{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"plis":grupo};
 
 
+
+
+var latitud= 'lat';
+var longitud= 'lng';
+var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1xZ-GxcvD1AuhX4HNu-Fj4AZO20GKbr7_t720XQkKPDQ/edit#gid=1806900358';
+
+
+	
+function showInfo(marcadores) {
+                       for (num=0; num<marcadores.length; num++)
+					   {current=marcadores[num];
+					var lati= current[latitud];
+					var longi= current[longitud];
+						lati =lati.replace(",",".");
+						longi =longi.replace(",",".");
+					L.marker([longi, lati]).addTo(grupo)
+					   }};
+					
+	
+function setup()  {
+  Tabletop.init( { key: publicSpreadsheetUrl,
+                   callback: showInfo,
+                   simpleSheet: true }
+			  	)
+};
+	
+	setup();
+	
+		
+	
+	
+	
 L.control.layers(overlays).addTo(mymap).setPosition('bottomleft').expand();
 L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(bicis);
 
@@ -89,6 +128,6 @@ L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(bicis);
 <script src="edambabr.js"></script>
 <script src="ecosede.js"></script>
 <script src="biblioverde.js"></script>
-
+<script src="campanavid.js"></script>
 </body>
 </html>
