@@ -67,7 +67,6 @@ var edAmAbr= new L.LayerGroup();
 var edAmMar= new L.LayerGroup();
 var bicis= new L.LayerGroup();
 var Campvid= new L.LayerGroup();
-var coord1= " ";
 var markers="";
 
 
@@ -90,6 +89,7 @@ function showInfo(marcadores) {
 					var longi= current[longitud];
 						lati =lati.replace(",",".");
 						longi =longi.replace(",",".");
+						
 					L.marker([longi, lati]).addTo(grupo)
 					   }};
 					
