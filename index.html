@@ -75,9 +75,15 @@ var overlays =
 //Variables globales que busca los atributos en google drive a través de Tabletop
 var latitud= 'lat';
 var longitud= 'lng';
-	
+var REG='REGION';
+var enlace='link';
+var icono="";
+
+
 // Variable que hace referencia a la tabla drive 
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1xZ-GxcvD1AuhX4HNu-Fj4AZO20GKbr7_t720XQkKPDQ/edit#gid=1806900358';
+
+	
 
 // Iteración busca datos en el google drive a través de Tabletop
 function showInfo(marcadores) {
@@ -87,8 +93,15 @@ function showInfo(marcadores) {
 					var longi= current[longitud];
 						lati =lati.replace(",",".");
 						longi =longi.replace(",",".");
-						
-					L.marker([longi, lati]).addTo(grupo)
+	icono = L.icon({
+    iconUrl: current[enlace],
+    iconSize: [15.2, 38],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+
+});
+						Region=current[REG]
+				L.marker([longi, lati],{icon:icono}).addTo(grupo).bindPopup("<b>Región:</b><br>"+Region)
 					   }};
 					
 // Función que ejecuta la iteración anterior dentro de la función "showInfo" a través del callback 
