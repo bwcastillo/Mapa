@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no" />
 <title>Mapa</title>
 
 <link rel="stylesheet" href="estilos.css" />
@@ -19,13 +20,37 @@
 <!--Librería JQuery-->
  <script src="https://code.jquery.com/jquery-2.1.4.min.js">//JQUERY </script>
  
+<!--Librería Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<!--Hoja de estilos Leaflet.Routing.machine -->
+<link rel="stylesheet" href="dist/leaflet-routing-machine.css"/>
+
+<!--Hoja de estilos y librería LeafletControlGeocoder -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<!--Hoja de estilos y librería de Bootstrap --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!--Font-Awesome-->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet"/>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+<!--Hoja de estilos y librería leafletAwesomeMarkers--> 
+<link rel="stylesheet" href="dist/leaflet.awesome-markers.css"/>
+<script src="dist/leaflet.awesome-markers.js"></script>
+
 <!--Librería Tabletop-->
- <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'> </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
  
 <!--Objetos GeoJson -->
  <script type="text/javascript" src="ciclovia.js"></script>
  <script type="text/javascript" src="barrios.js"></script>
 <style>#mapid {height: 800px;}</style>
+
 </head>
 
 
@@ -33,6 +58,8 @@
 
 <header id= "cabecera" > <h1 >Mapa subdirección gestión ambiental</h1> </header>
 <div id="mapid"></div>
+<script src="dist/leaflet-routing-machine.js"></script>
+
 <script> 
 //Aquí se agrega el mapabase dentro de la variable "mymap", además se les proporcionan algunas características iniciales 
 var mymap = L.map('mapid',{maxBounds:[
@@ -40,6 +67,14 @@ var mymap = L.map('mapid',{maxBounds:[
     [-33.619460, -70.700762]
 ]}).setView([-33.532898, -70.756266], 12); /*-33.5359312, -70.789277*/
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Autor: Bryan Castillo M.', minZoom:13 ,maxZoom: 17, id: 'mapbox.streets',accessToken: 'pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'}).addTo(mymap);
+	
+	
+/*L.Routing.control({
+	router: L.Routing.mapbox('pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'), 
+	geocoder: 
+    }).addTo(mymap)*/
+	
+	
 </script>
 
 <script>
@@ -67,6 +102,7 @@ var edAmMar= new L.LayerGroup();
 var bicis= new L.LayerGroup();
 var Campvid= new L.LayerGroup();
 var markers="";
+var icon=" ";
 
 //Variable que agrupa los Layergroup que searán ejecutados en el Layer Control
 var overlays =
@@ -101,7 +137,9 @@ function showInfo(marcadores) {
 
 });
 						Region=current[REG]
-				L.marker([longi, lati],{icon:icono}).addTo(grupo).bindPopup("<b>Región:</b><br>"+Region)
+				L.marker([longi, lati],{icon: L.AwesomeMarkers.icon({
+      icon: 'bell', 
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(grupo).bindPopup("<b>Región:</b><br>"+Region)
 					   }};
 					
 // Función que ejecuta la iteración anterior dentro de la función "showInfo" a través del callback 
