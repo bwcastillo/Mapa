@@ -131,13 +131,7 @@ function showInfo(marcadores) {
 					var longi= current[longitud];
 						lati =lati.replace(",",".");
 						longi =longi.replace(",",".");
-	icono = L.icon({
-    iconUrl: current[enlace],
-    iconSize: [15.2, 38],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
 
-});
 						Region=current[REG]
 				L.marker([longi, lati],{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
