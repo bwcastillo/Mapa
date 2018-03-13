@@ -31,6 +31,11 @@
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -111,7 +116,7 @@ var cultivaTuSalud= new L.LayerGroup();
 var overlays =
 {"Proyectos DIA": flaco,"Proyectos EIA": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Certificación Ambiental de establecimientos educacionales":cerEstEdMun, "Establecimiento educacional punto verde": EEdPtoVer, "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud};
 
-//Variables globales que busca los atributos en google drive a través de Tabletop
+//Variables globales que busca los atributos en google drive a través de Tabletop ( Por lo que me di cuenta en líneas y procesos posteriores, hice un montón de variables globales innecesarias para los bucle de las distintas funciones; las iteraciones de éstas últimas, quedan almacenadas en la variable o layer que forma un LayerGroup, sin influir al resto de ellas)
 
 var a, b, c, d, e, f, g ,h,i,j,k,l,m,n,o,p,q,r;
 var coorA, coorB, coorC, coorD, coorE, coorF, coorG, coorH, coorI, coorJ, coorK, coorL, coorM, coorN,coorO, coorP, coorQ, coorR;
@@ -153,7 +158,34 @@ var lng_q= 'lngq';
 var lng_r= 'lngr';
 var latA,latB,latC,latD,latE,latF,latG,latH,latI,latJ,latK,latL,latM,latN,latO,latP,latQ,latR;
 var lngA,lngB,lngC,latD,lngE,lngF,lngG,lngH,lngI,lngJ,lngK,lngL,lngM,lngN,latO,lngP,lngQ,lngR;
+
+//var global reemplazo;
 var reemp=" ";
+//var global dirección
+var adress= " ";
+//var globales A 
+var nomEstabl, lvlCert ;
+//var globales B ,C,D,E,F,G,H,I,J,M
+var progra, nomTall, lug, horari, encar, fechIni;
+//var globales K
+var nomProy, descProy;
+//var gloables L
+var nombBibl;
+//var globales M
+var tipoEnv;
+//var globales N 
+var status;
+// var globales O,P
+var queRecic;
+// var gloables Q
+var numPara;
+// var globales R
+var barrio;
+
+
+	
+
+
 // Variable que hace referencia a la tabla drive 
 	
 var publicSpreadsheetUrla = 'https://docs.google.com/spreadsheets/d/1dtaMxRz7RRBZU8nkaiBRSd-8kPShVRgVzEpYdA-vMGg/edit#gid=0';
@@ -177,6 +209,9 @@ var publicSpreadsheetUrlr='https://docs.google.com/spreadsheets/d/1a314Q1QbaVDuF
 	
 
 // Iteración busca datos en el google drive a través de Tabletop
+
+// A: Certificación ambiental de establecimientos educacionales en 2017
+
 function showInfoa(marcadoresa) {
                        for (num=0; num<marcadoresa.length; num++)
 					   {current=marcadoresa[num];
@@ -185,14 +220,21 @@ function showInfoa(marcadoresa) {
 						latA =latA.replace(",",".");
 						lngA =lngA.replace(",",".");
 						coorA= [lngA, latA];
-						;	
+						
+		//Iteración de los atributos extraídos:
+						
+						nomEstabl=current['Nombre del Establecimiento']
+						;
+						lvlCert=current['Nivel de Certificación obtenido'];
+						adress=current['direccion'];
+						
 						L.marker(coorA,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(cerEstEdMun).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(cerEstEdMun).bindPopup("<b>Nombre del Establecimiento:</b><br>"+nomEstabl+"<br><br><b> Nivel de certificado obtenido:</b><br>"+lvlCert+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
-	
+	// B: Educación ambiental marzo 2017
 function showInfob(marcadoresb) {
                        for (num=0; num<marcadoresb.length; num++)
 					   {current=marcadoresb[num];
@@ -201,14 +243,21 @@ function showInfob(marcadoresb) {
 						latB =latB.replace(",",".");
 						lngB =lngB.replace(",",".");
 						coorB= [lngB, latB];
-							
+		
+		//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
 						
 						L.marker(coorB,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmMar).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmMar).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 					   }
 				   ;}
-	
+// C: Educación ambiental abril 2017
 function showInfoc(marcadoresc) {
                        for (num=0; num<marcadoresc.length; num++)
 					   {current=marcadoresc[num];
@@ -217,13 +266,22 @@ function showInfoc(marcadoresc) {
 						latC =latC.replace(",",".");
 						lngC =lngC.replace(",",".");
 						coorC= [lngC, latC];
+							//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
 						
-					L.marker(coorC,{icon: L.AwesomeMarkers.icon({
+						
+			L.marker(coorC,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmAbr).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmAbr).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
+// D: Educación ambiental mayo 2017
 function showInfod(marcadoresd) {
                        for (num=0; num<marcadoresd.length; num++)
 					   {current=marcadoresd[num];
@@ -233,12 +291,22 @@ function showInfod(marcadoresd) {
 						lngD =lngD.replace(",",".");
 						coorD= [lngD, latD];
 						
-						L.marker(coorD,{icon: L.AwesomeMarkers.icon({
-      icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmMay).bindPopup("<b>Región:</b><br>")
+						//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
 						
+						
+			L.marker(coorD,{icon: L.AwesomeMarkers.icon({
+      icon: 'bell', 
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmMay).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 					   }
 				   ;}
+	
+// E: Educación ambiental junio 2017
 function showInfoe(marcadorese) {
                        for (num=0; num<marcadorese.length; num++)
 					   {current=marcadorese[num];
@@ -248,12 +316,23 @@ function showInfoe(marcadorese) {
 						lngE =lngE.replace(",",".");
 						coorE= [lngE, latE];
 						
-						L.marker(coorE,{icon: L.AwesomeMarkers.icon({
+						//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
+						
+						
+			L.marker(coorE,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edamjun).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edamjun).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
+
+// F: Educación ambiental julio 2017
 function showInfof(marcadoresf) {
                        for (num=0; num<marcadoresf.length; num++)
 					   {current=marcadoresf[num];
@@ -263,13 +342,23 @@ function showInfof(marcadoresf) {
 						lngF =lngF.replace(",",".");
 						coorF= [lngF, latF];
 						
-						L.marker(coorF,{icon: L.AwesomeMarkers.icon({
+						//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
+						
+						
+			L.marker(coorF,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edamjul).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edamjul).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
-	
+
+// G: Educación ambiental agosto 2017
 function showInfog(marcadoresg) {
                        for (num=0; num<marcadoresg.length; num++)
 					   {current=marcadoresg[num];
@@ -278,13 +367,24 @@ function showInfog(marcadoresg) {
 						latG =latG.replace(",",".");
 						lngG =lngG.replace(",",".");
 						coorG= [lngG, latG];
-		
-						L.marker(coorG,{icon: L.AwesomeMarkers.icon({
+						
+		//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
+						
+						
+			L.marker(coorG,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmAgo).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmAgo).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
+	
+// H: Educación ambiental septiembre 2017
 function showInfoh(marcadoresh) {
                        for (num=0; num<marcadoresh.length; num++)
 					   {current=marcadoresh[num];
@@ -294,12 +394,23 @@ function showInfoh(marcadoresh) {
 						lngH =lngH.replace(",",".");
 						coorH= [lngH, latH];
 						
-						L.marker(coorH,{icon: L.AwesomeMarkers.icon({
+						//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
+						
+						
+			L.marker(coorH,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmSep).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmSep).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
+	
+// I: Educación ambiental octubre 2017
 function showInfoi(marcadoresi) {
                        for (num=0; num<marcadoresi.length; num++)
 					   {current=marcadoresi[num];
@@ -309,12 +420,24 @@ function showInfoi(marcadoresi) {
 						lngI =lngI.replace(",",".");
 						coorI= [lngI, latI];
 						
-						L.marker(coorI,{icon: L.AwesomeMarkers.icon({
+					
+						//Iteración de los atributos extraídos:
+						progra= current['PROGRAMA'];
+						nomTall= current['NOMBRE TALLER'];
+						lug= current['LUGAR'];
+						horari= current['DÍA - HORA'];
+						encar= current['ENCARGADO'];
+						adress = current ['direccion'];
+						
+						
+			L.marker(coorI,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmOct).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(edAmOct).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
+
+// J: PROGRAMA CULTIVA TU SALUD
 function showInfoj(marcadoresj) { 
                        for (num=0; num<marcadoresj.length; num++)
 					   {current=marcadoresj[num];
@@ -323,13 +446,19 @@ function showInfoj(marcadoresj) {
 						latJ =latJ.replace(",",".");
 						lngJ =lngJ.replace(",",".");
 						coorJ= [lngJ, latJ];
+			
+						
+						//Iteración de los atributos extraídos:
+						lug= current['LUGAR'];
+						adress = current ['direccion'];
 							
 						L.marker(coorJ,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(cultivaTuSalud).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(cultivaTuSalud).bindPopup("<b>Lugar donde se ejecuta el programa:</b><br>"+lug+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
+// K: Proyectos emblemáticos
 function showInfok(marcadoresk) { 
                        for (num=0; num<marcadoresk.length; num++)
 					   {current=marcadoresk[num];
@@ -339,12 +468,19 @@ function showInfok(marcadoresk) {
 						lngK =lngK.replace(",",".");
 						coorK= [lngK, latK];
 					
+						//Iteración de los atributos extraídos:
+						nomProy= current['Nombre del proyecto']
+						descProy= current ['Descripción del proyecto']
+						adress=current['direccion']
+						
 						L.marker(coorK,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(grupo).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(grupo).bindPopup("<b>Nombre del proyecto:</b><br>"+nomProy+"<br><br><b>Descripción del proyecto:</b><br>"+descProy+"<br><br><b>Dirección:<br></b>"+adress )
 						
 					   }
 				   ;}
+	
+// L: Bibliotecas
 function showInfol(marcadoresl) { 
                        for (num=0; num<marcadoresl.length; num++)
 					   {current=marcadoresl[num];
@@ -353,10 +489,15 @@ function showInfol(marcadoresl) {
 						latL =latL.replace(",",".");
 						lngL =lngL.replace(",",".");
 						coorL= [lngL, latL];
+						
+						//Iteración de los atributos extraídos:
+						nombBibl= current['Nombre']
+						horari= current ['Horarios']
+						adress=current['direccion']
 					
 						L.marker(coorL,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(BiblVerd).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(BiblVerd).bindPopup("<b>Nombre biblioteca:</b><br>"+nombBibl+"<br><br><b>Horario</b><br>"+horari+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -368,10 +509,15 @@ function showInfom(marcadoresm) {
 						latM =latM.replace(",",".");
 						lngM =lngM.replace(",",".");
 						coorM= [lngM, latM];
-			
+				//Iteración de los atributos extraídos:
+						
+						lug=current['Ubicación campanas'];
+						tipoEnv=current['Tipos de envases'];
+						adress=current['direccion']
+						
 						L.marker(coorM,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(Campvid).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(Campvid).bindPopup("<b>Nombre de la ubicación:</b><br>"+lug+"<br><br><b>Envase de vidrios permitidos:</b><br>"+tipoEnv+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -380,13 +526,19 @@ function showInfon(marcadoresn) {
 					   {current=marcadoresn[num];
 					var latN= current[lat_n];
 					var lngN= current[lng_n];
-					//	latN =latN.replace(",",".");
-					//	lngN =lngN.replace(",",".");
+					latN =latN.replace(",",".");
+						lngN =lngN.replace(",",".");
 						coorN= [lngN, latN];
-				
+				//Iteración de los atributos extraídos:
+						
+						nomEstabl=current['Establecimiento'];
+						status=current['Estado'];
+						adress=current['direccion'];
+						
+						
 						L.marker(coorN,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(EEdPtoVer).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(EEdPtoVer).bindPopup("<b>Nombre del establecimiento:</b><br>"+nomEstabl+"<br><br><b>Estado del punto limpio:</b><br>"+status+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}  
@@ -395,13 +547,20 @@ function showInfoo(marcadoreso) {
 					   {current=marcadoreso[num];
 					var latO= current[lat_o];
 					var lngO= current[lng_o];
-					//	latN =latN.replace(",",".");
-					//	lngN =lngN.replace(",",".");
+				//	latN =latN.replace(",",".");
+				//	lngN =lngN.replace(",",".");
 						coorO= [lngO, latO];
+				//Iteración de los atributos extraídos:
+					lug=current['Lugar'];
+					queRecic=current['Material Reciclaje'];
+					adress=current['direccion'];
+					horari=current['Horario de atención'];
+					encar=current['Contacto'];
+					
 				
 						L.marker(coorO,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(MinPtoVer).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(MinPtoVer).bindPopup("<b>Nombre de la ubicación:</b><br>"+lug+"<br><br><b>Que reciclar:</b><br>"+queRecic+"<br><br><b>Horario de atención</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}  
@@ -413,10 +572,14 @@ function showInfop(marcadoresp) {
 				latP =latP.replace(",",".");
 				lngP =lngP.replace(",",".");
 						coorP= [lngP, latP];
+							//Iteración de los atributos extraídos:
+					lug=current['Nombre'];
+					queRecic=current['Que reciclar'];
+					adress=current['direccion'];
 					
-						L.marker(coorP,{icon: L.AwesomeMarkers.icon({
+					L.marker(coorP,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(PtoLim).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(PtoLim).bindPopup("<b>Nombre de la ubicación:</b><br>"+lug+"<br><br><b>Que reciclar:</b><br>"+queRecic+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}  
@@ -428,10 +591,14 @@ function showInfoq(marcadoresq) {
 						latQ =latQ.replace(",",".");
 						lngQ =lngQ.replace(",",".");
 						coorQ= [lngQ, latQ];
+						//Número de parada:
+						numPara=current['N° de parada'];
+						lug=current['Nombre parada'];
+						adress=current['direccion'];
 						
 						L.marker(coorQ,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(rutaAgua).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(rutaAgua).bindPopup("<b>Número de parada:</b><br>"+numPara+"<br><br><b>Nombre de la parada:</b><br>"+lug+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}  
@@ -443,10 +610,13 @@ function showInfor(marcadoresr) {
 						latR =latR.replace(",",".");
 						lngR =lngR.replace(",",".");
 						coorR= [lngR, latR];
-						
+						//Número de parada:
+						lug=current['Nombre'];
+						status=current['Estado'];
+					barrio=current['Barrio'];	adress=current['direccion'];
 						L.marker(coorR,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
-      prefix: 'glyphicon', markerColor:'red'})}).addTo(EcoSed).bindPopup("<b>Región:</b><br>")
+      prefix: 'glyphicon', markerColor:'red'})}).addTo(EcoSed).bindPopup("<b>Nombre de la sede:</b><br>"+lug+"<br><br><b>Vigencia:</b><br>"+status+"<br><br><b>Barrio:</b><br>"+barrio+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}  
@@ -543,19 +713,6 @@ L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(bicis);
 <!-- A continuación se llaman los objetos JS que fueron nombrados anteriormente -->
 <script src="diaseia.js"></script>
 <script src="eiaseia.js"></script>
-<script src="puntolimpio.js"></script>
-<script src="miniptoverd.js"></script>
-<script src="estamb.js"></script>
-<script src="edambsep.js"></script>
-<script src="edamboct.js"></script>
-<script src="edambmay.js"></script>
-<script src="edambjun.js"></script>
-<script src="edambjul.js"></script>
-<script src="edambamar.js"></script>
-<script src="edambago.js"></script>
-<script src="edambabr.js"></script>
-<script src="ecosede.js"></script>
-<script src="biblioverde.js"></script>
-<script src="campanavid.js"></script>
+
 </body>
 </html>

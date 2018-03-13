@@ -8,4 +8,4 @@ L.marker([	-33.4785707	,	-70.7518224	])	.bindPopup("	<b>Lugar</b><br>	J.V Versal
 L.marker([	-33.5023179	,	-70.7381047	])	.bindPopup("	<b>Lugar</b><br>	Volcan Tacora	<br><b>Dirección</b><br>	1563 Sewell, Maipú, Santiago	<br><b>Barrio</b><br>	Clotario Blest	<br><b>Estado</b><br>	Proyectada	"	).openPopup().addTo(	EcoSed);
 L.marker([	-33.5088137	,	-70.744665	])	.bindPopup("	<b>Lugar</b><br>	Villa CIC El alto	<br><b>Dirección</b><br>	127 El Alto, Maipú, Santiago	<br><b>Barrio</b><br>	Riesco central	<br><b>Estado</b><br>	Proyectada	"	).openPopup().addTo(	EcoSed);
 L.marker([	-33.5254542	,	-70.794514	])	.bindPopup("	<b>Lugar</b><br>	J.V Pehuen 4 y 5	<br><b>Dirección</b><br>	270 La Galaxia, Maipú, Santiago	<br><b>Barrio</b><br>	Pehuen	<br><b>Estado</b><br>	Proyectada	"	).openPopup().addTo(	EcoSed);
-L.marker([		,		])	.bindPopup("	<b>Lugar</b><br>	J.V Doña Margarita	<br><b>Dirección</b><br>		<br><b>Barrio</b><br>	Pehuen	<br><b>Estado</b><br>	Implementada	"	).openPopup().addTo(	EcoSed);
+
