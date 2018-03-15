@@ -115,15 +115,17 @@ var Campvid= new L.LayerGroup();
 var rutaAgua= new L.LayerGroup();
 var cerEstEdMun= new L.LayerGroup();
 var cultivaTuSalud= new L.LayerGroup();
+var pacTrenAlMel= new L.LayerGroup();
+var pacOleoduc= new L.LayerGroup();
 
 //Variable que agrupa los Layergroup que searán ejecutados en el Layer Control
 var overlays =
-{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Certificación Ambiental de establecimientos educacionales":cerEstEdMun, "Establecimiento educacional punto verde": EEdPtoVer, "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud};
+{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Certificación Ambiental de establecimientos educacionales":cerEstEdMun, "Establecimiento educacional punto verde": EEdPtoVer, "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
 
 //Variables globales que busca los atributos en google drive a través de Tabletop ( Por lo que me di cuenta en líneas y procesos posteriores, hice un montón de variables globales innecesarias para los bucle de las distintas funciones; las iteraciones de éstas últimas, quedan almacenadas en la variable o layer que forma un LayerGroup, sin influir al resto de ellas)
 
-var a, b, c, d, e, f, g ,h,i,j,k,l,m,n,o,p,q,r;
-var coorA, coorB, coorC, coorD, coorE, coorF, coorG, coorH, coorI, coorJ, coorK, coorL, coorM, coorN,coorO, coorP, coorQ, coorR;
+var a, b, c, d, e, f, g ,h,i,j,k,l,m,n,o,p,q,r,s,t;
+var coorA, coorB, coorC, coorD, coorE, coorF, coorG, coorH, coorI, coorJ, coorK, coorL, coorM, coorN,coorO, coorP, coorQ, coorR, coorde;
 var lat_a= 'lata';
 var lat_b= 'latb';
 var lat_c= 'latc';
@@ -160,8 +162,16 @@ var lng_o= 'lngo';
 var lng_p= 'lngp';
 var lng_q= 'lngq';
 var lng_r= 'lngr';
+//Nueva variable global que busca longitud y latitud
+var longitud= 'lng';
+var latitud= 'lat';
+
+// Variable global para convertir coordenadas 
 var latA,latB,latC,latD,latE,latF,latG,latH,latI,latJ,latK,latL,latM,latN,latO,latP,latQ,latR;
 var lngA,lngB,lngC,latD,lngE,lngF,lngG,lngH,lngI,lngJ,lngK,lngL,lngM,lngN,latO,lngP,lngQ,lngR;
+
+//Nueva variable global para buscar longitud y latitud
+var lnG, laT;
 
 //var global reemplazo;
 var reemp=" ";
@@ -185,6 +195,8 @@ var queRecic;
 var numPara;
 // var globales R
 var barrio;
+// var gloables S
+var tipo, fecha;
 
 
 	
@@ -205,12 +217,13 @@ var publicSpreadsheetUrlj= 'https://docs.google.com/spreadsheets/d/1XKCCnTe7d2Ql
 var publicSpreadsheetUrlk= 'https://docs.google.com/spreadsheets/d/1lu94QuJEVJS7LwchzEYOrk0O_8YAKLYxNsHa6Ynyc8I/edit#gid=0';
 var publicSpreadsheetUrll= 'https://docs.google.com/spreadsheets/d/1ew-yWgHwi5Abt6b8FVOY3ATX9wcBuX1h91-KByxzAS8/edit#gid=0';
 var publicSpreadsheetUrlm= 'https://docs.google.com/spreadsheets/d/1tyz6zddhGx5pMV0r0iMZsj96wgiZlWfuT-SXXyeEXs4/edit#gid=0';
-var publicSpreadsheetUrln= 'https://docs.google.com/spreadsheets/d/1IGDIjtu1r5OP2-geCUrkMaA0v_ZSfiuh8N1pqNM-Qk4/edit#gid=0'
-var publicSpreadsheetUrlo= 'https://docs.google.com/spreadsheets/d/1zQ0gcK7DbVuuWLymP6XuxETLxsCdeOExVxBoaKnHkYQ/edit#gid=0'
-var publicSpreadsheetUrlp='https://docs.google.com/spreadsheets/d/1xnSKjRbpEF9mMKkG72bsH5sf-er6QOlPSZsWOgJmB34/edit#gid=0'
-var publicSpreadsheetUrlq='https://docs.google.com/spreadsheets/d/1En4PupkUwo2HUOyV5sQ_U2pcnSi6p1ePcZJXornhZVY/edit#gid=0'
-var publicSpreadsheetUrlr='https://docs.google.com/spreadsheets/d/1a314Q1QbaVDuF1NVjz_mhtQmehDypNDYXxM7-E0b_bM/edit#gid=0'
-	
+var publicSpreadsheetUrln= 'https://docs.google.com/spreadsheets/d/1IGDIjtu1r5OP2-geCUrkMaA0v_ZSfiuh8N1pqNM-Qk4/edit#gid=0';
+var publicSpreadsheetUrlo= 'https://docs.google.com/spreadsheets/d/1zQ0gcK7DbVuuWLymP6XuxETLxsCdeOExVxBoaKnHkYQ/edit#gid=0';
+var publicSpreadsheetUrlp='https://docs.google.com/spreadsheets/d/1xnSKjRbpEF9mMKkG72bsH5sf-er6QOlPSZsWOgJmB34/edit#gid=0';
+var publicSpreadsheetUrlq='https://docs.google.com/spreadsheets/d/1En4PupkUwo2HUOyV5sQ_U2pcnSi6p1ePcZJXornhZVY/edit#gid=0';
+var publicSpreadsheetUrlr='https://docs.google.com/spreadsheets/d/1a314Q1QbaVDuF1NVjz_mhtQmehDypNDYXxM7-E0b_bM/edit#gid=0';
+var publicSpreadsheetUrls='https://docs.google.com/spreadsheets/d/1B8wIliqJh4u4Yd61oCGcD4OINzLU-qIDWcRGXGxcMzE/edit#gid=0';
+var publicSpreadsheetUrlt='https://docs.google.com/spreadsheets/d/1V8sicXr5pIs6qcKMCsO7pXdP8cP5dK6plLcn9901o7k/edit#gid=0';
 
 // Iteración busca datos en el google drive a través de Tabletop
 
@@ -603,7 +616,7 @@ function showInfoq(marcadoresq) {
 						latQ =latQ.replace(",",".");
 						lngQ =lngQ.replace(",",".");
 						coorQ= [lngQ, latQ];
-						//Número de parada:
+						//Iteración de los atributos extraídos:
 						numPara=current['N° de parada'];
 						lug=current['Nombre parada'];
 						adress=current['direccion'];
@@ -624,7 +637,7 @@ function showInfor(marcadoresr) {
 						latR =latR.replace(",",".");
 						lngR =lngR.replace(",",".");
 						coorR= [lngR, latR];
-						//Número de parada:
+						//Iteración de los atributos extraídos:
 						lug=current['Nombre'];
 						status=current['Estado'];
 					barrio=current['Barrio'];	adress=current['direccion'];
@@ -634,6 +647,57 @@ function showInfor(marcadoresr) {
 						
 					   }
 				   ;}  
+//S: PAC Tren Melipilla alameda
+function showInfos(marcadoress) { 
+                       for (num=0; num<marcadoress.length; num++)
+					   {current=marcadoress[num];
+					var laT= current[latitud];
+					var lnG= current[longitud];
+						laT =laT.replace(",",".");
+						lnG =lnG.replace(",",".");
+						coorde= [lnG, laT];
+						//Iteración de los atributos extraídos:
+						lug= current['Lugar'];
+						tipo= current['Tipo'];
+						fecha=current['Fecha'];
+					adress=current['Dirección'];
+						barrio=current['Barrio']
+
+						
+						
+					
+						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
+      icon: 'user', 
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(pacTrenAlMel).bindPopup("<b>Tipo de participación ciudadana (PAC):</b><br>"+tipo+"<br><br><b>Fecha de realización</b><br>"+fecha+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Barrio</b><br>"+barrio+"<br><br><b>Dirección</b><br>"+adress)
+						
+					   }
+				   ;}  
+	
+//T: Segunda Línea Oleoducto M-AAMB
+function showInfot(marcadorest) { 
+                      for (num=0; num<marcadorest.length; num++)
+					   {current=marcadorest[num];
+					var laT= current[latitud];
+					var lnG= current[longitud];
+						laT =laT.replace(",",".");
+						lnG =lnG.replace(",",".");
+						coorde= [lnG, laT];
+						//Iteración de los atributos extraídos:
+						lug= current['Lugar'];
+						tipo= current['Tipo'];
+						fecha=current['Fecha'];
+					adress=current['Dirección'];
+						barrio=current['Barrio']
+						horari=current['Horario']
+
+						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
+      icon: 'user', 
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(pacOleoduc).bindPopup("<b>Tipo de participación ciudadana (PAC):</b><br>"+tipo+"<br><br><b>Fecha de realización</b><br>"+fecha+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horario</b><br>"+horari+"<br><br><b>Barrio</b><br>"+barrio+"<br><br><b>Dirección</b><br>"+adress)
+						
+					   }
+				   ;}  
+						
+					
 
 					
 // Función que ejecuta la iteración anterior dentro de la función "showInfo" a través del callback 
@@ -711,6 +775,15 @@ r = Tabletop.init( { key: publicSpreadsheetUrlr,
                    callback: showInfor,
                    simpleSheet: true }
 			  	) 
+s = Tabletop.init( { key: publicSpreadsheetUrls,
+                   callback: showInfos,
+                   simpleSheet: true }
+			  	) 
+t = Tabletop.init( { key: publicSpreadsheetUrlt,
+                   callback: showInfot,
+                   simpleSheet: true }
+			  	) 
+
 };
 
 // Llamo a la función "setup" de Tabletop que es la que contiene las funciones y parámetros para ejecutar la hoja drive a Leaflet
