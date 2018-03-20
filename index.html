@@ -80,9 +80,10 @@ html, body, #mapid {
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-red w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
    
     <a href="#headinicio" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inicio</a>
+    <a href="#comoFun" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Video tutorial</a>
+    <a href="#mapid" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Ir al mapa</a>
     <a href="#descInfo" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Descripción de la información</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Ir al mapa</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Video tutorial</a>
+
   </div>
 
 
@@ -104,9 +105,11 @@ html, body, #mapid {
 </header>
 </div>
 
+
+	<div id="comoFun">
  <div class="w3-row-padding w3-padding-64 w3-container">
   <div class="w3-content">
-    <div class="w3-twothird">
+    <div class="w3-twothird" style=>
       <h1>¿Cómo funciona?</h1>
       <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1ah71n_RSmw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -114,7 +117,8 @@ html, body, #mapid {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat.</p>
     </div>
-
+</div>
+   
     <div class="w3-third w3-center">
        <i class="fas fa-asterisk w3-padding-16 w3-text-green"></i>
     </div>
@@ -132,11 +136,19 @@ html, body, #mapid {
 <script src="diaseia.js"></script>
 <script src="eiaseia.js"></script>
 <script> 
-	 var newDocLocation = "https://bwcastillo.github.io/Mapa/"
-	L.easyButton( 'fas fa-sync-alt spin', function(){
+	 var newDocLocation = "https://bwcastillo.github.io/Mapa/";
+	L.easyButton( 'fas fa-bars', function(){
         window.location.href = newDocLocation;
         window.setTimeout(function(){
           $("#headinicio").removeClass('hidden');
+        }, 2000);
+      }).addTo(mymap);
+	
+	 var newDocLocation = "https://bwcastillo.github.io/Mapa/";
+	L.easyButton( 'fab fa-youtube spin', function(){
+        window.location.href = newDocLocation;
+        window.setTimeout(function(){
+          $("#comoFun").removeClass('hidden');
         }, 2000);
       }).addTo(mymap);</script>
 </div>
