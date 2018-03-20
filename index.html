@@ -23,13 +23,6 @@
 <!--Librería Popper.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-<!--Hoja de estilos Leaflet.Routing.machine -->
-<link rel="stylesheet" href="dist/leaflet-routing-machine.css"/>
-
-<!--Hoja de estilos y librería LeafletControlGeocoder -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -47,6 +40,11 @@
 
 <!--Librería Tabletop-->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+ 
+ <!--Easy Icon LeafLet-->
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
  
 <!--Objetos GeoJson -->
  <script type="text/javascript" src="ciclovia.js"></script>
@@ -74,25 +72,57 @@ html, body, #mapid {
 
 
 
-
 <body>
+    
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-green w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-red w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+   
+    <a href="#headinicio" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inicio</a>
+    <a href="#descInfo" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Descripción de la información</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Ir al mapa</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Video tutorial</a>
+  </div>
 
 
+  
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
 
   </div>
+</div>
 
 
 <!-- Header -->
-<div>
-<header class="w3-container w3-green w3-center" style="padding:128px 16px">
+<div id="headinicio">
+<header class="w3-container w3-green w3-opacity w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">BIENVENIDOS  AL MAPA DE LA SUBDIRECCIÓN DE MEDIO AMBIENTE MAIPÚ <i class="fab fa-envira" data-fa-transform="rotate--270"></i></h1>
   <p class="w3-xlarge">Podrás ver la información ambiental relacionada a tú barrio </p>
  <a href ="#mapid"> <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">IR AL MAPA</button></a>
 </header>
 </div>
+
+ <div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>¿Cómo funciona?</h1>
+      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+<iframe width="560" height="315" 
+src="https://www.youtube.com/watch?v=1G3b65VU3L4"  
+allowfullscreen></iframe>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <div class="w3-third w3-center">
+       <i class="fas fa-asterisk w3-padding-16 w3-text-green"></i>
+    </div>
+  </div>
+</div>
+
 
 <div><header id= "cabecera" > <h1 >Mapa subdirección gestión ambiental <i class="far fa-map"></i></h1> </header></div>
 <div id="mapid">
@@ -107,14 +137,14 @@ html, body, #mapid {
 
 
 <!-- Second Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+<div id="descInfo" class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
     <div class="w3-third w3-center">
   <i class="fas fa-cogs w3-text-green w3-opacity w3-margin-right"></i>
     </div>
 
     <div class="w3-twothird">
-      <h1>¿Como funciona?</h1>
+      <h1>Descripcion de la informacion</h1>
       <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
 
       <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
