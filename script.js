@@ -8,7 +8,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 	
 
 L.easyButton( 'fas fa-bars', function(){
-  location('#headinicio');
+  location("#headinicio");
 }).addTo(mymap);
 	
 /*L.Routing.control({
