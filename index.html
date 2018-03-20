@@ -131,6 +131,14 @@ html, body, #mapid {
 <!-- A continuación se llaman los objetos JS que fueron nombrados anteriormente -->
 <script src="diaseia.js"></script>
 <script src="eiaseia.js"></script>
+<script> 
+	 var newDocLocation = "https://bwcastillo.github.io/Mapa/"
+	L.easyButton( 'fas fa-sync-alt spin', function(){
+        window.location.href = newDocLocation;
+        window.setTimeout(function(){
+          $("#headinicio").removeClass('hidden');
+        }, 2000);
+      }).addTo(mymap);</script>
 </div>
 
 

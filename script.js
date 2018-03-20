@@ -7,9 +7,7 @@ var mymap = L.map('mapid',{maxBounds:[
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Autor: Bryan Castillo M.', minZoom:10 ,maxZoom: 17, id: 'mapbox.streets',accessToken: 'pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'}).addTo(mymap);
 	
 
-L.easyButton( 'fas fa-bars', function(){
-  location("#headinicio");
-}).addTo(mymap);
+
 	
 /*L.Routing.control({
 	router: L.Routing.mapbox('pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'), 
