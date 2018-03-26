@@ -46,21 +46,13 @@ var pacOleoduc= new L.LayerGroup();
 
 //Variable que agrupa los Layergroup que searán ejecutados en el Layer Control
 var overlays =
-{"Proyectos DIA": flaco,"Proyectos EIA": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Certificación Ambiental de establecimientos educacionales":cerEstEdMun, "Establecimiento educacional punto verde": EEdPtoVer, "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
+{"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Certificación Ambiental de establecimientos educacionales":cerEstEdMun, "Establecimiento educacional punto verde": EEdPtoVer, "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
 
 //Variables globales que busca los atributos en google drive a través de Tabletop ( Por lo que me di cuenta en líneas y procesos posteriores, hice un montón de variables globales innecesarias para los bucle de las distintas funciones; las iteraciones de éstas últimas, quedan almacenadas en la variable o layer que forma un LayerGroup, sin influir al resto de ellas)
 
 var a, b, c, d, e, f, g ,h,i,j,k,l,m,n,o,p,q,r,s,t;
 var coorA, coorB, coorC, coorD, coorE, coorF, coorG, coorH, coorI, coorJ, coorK, coorL, coorM, coorN,coorO, coorP, coorQ, coorR, coorde;
-var lat_a= 'lata';
-var lat_b= 'latb';
-var lat_c= 'latc';
-var lat_d= 'latd';
-var lat_e= 'late';
-var lat_f= 'latf';
-var lat_g= 'latg';
-var lat_h= 'lath';
-var lat_i= 'lati';
+var lat= 'Latitud';
 var lat_j= 'latj';
 var lat_k= 'latk';
 var lat_l= 'latl';
@@ -70,15 +62,7 @@ var lat_o= 'lato';
 var lat_p= 'latp';
 var lat_q= 'latq';
 var lat_r= 'latr';
-var lng_a= 'lnga';
-var lng_b= 'lngb';
-var lng_c= 'lngc';
-var lng_d= 'lngd';
-var lng_e= 'lnge';
-var lng_f= 'lngf';
-var lng_g= 'lngg';
-var lng_h= 'lngh';
-var lng_i= 'lngi';
+var lng= 'Longitud';
 var lng_j= 'lngj';
 var lng_k= 'lngk';
 var lng_l= 'lngl';
@@ -88,6 +72,7 @@ var lng_o= 'lngo';
 var lng_p= 'lngp';
 var lng_q= 'lngq';
 var lng_r= 'lngr';
+
 //Nueva variable global que busca longitud y latitud
 var longitud= 'lng';
 var latitud= 'lat';
@@ -158,11 +143,11 @@ var publicSpreadsheetUrlt='https://docs.google.com/spreadsheets/d/1V8sicXr5pIs6q
 function showInfoa(marcadoresa) {
                        for (num=0; num<marcadoresa.length; num++)
 					   {current=marcadoresa[num];
-					var latA= current[lat_a];
-					var lngA= current[lng_a];
+					var latA= current[lat];
+					var lngA= current[lng];
 						latA =latA.replace(",",".");
 						lngA =lngA.replace(",",".");
-						coorA= [lngA, latA];
+						coorA= [latA, lngA];
 						
 		//Iteración de los atributos extraídos:
 						
@@ -181,11 +166,11 @@ function showInfoa(marcadoresa) {
 function showInfob(marcadoresb) {
                        for (num=0; num<marcadoresb.length; num++)
 					   {current=marcadoresb[num];
-					var latB= current[lat_b];
-					var lngB= current[lng_b];
+					var latB= current[lat];
+					var lngB= current[lng];
 						latB =latB.replace(",",".");
 						lngB =lngB.replace(",",".");
-						coorB= [lngB, latB];
+						coorB= [latB, lngB];
 		
 		//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
@@ -204,11 +189,11 @@ function showInfob(marcadoresb) {
 function showInfoc(marcadoresc) {
                        for (num=0; num<marcadoresc.length; num++)
 					   {current=marcadoresc[num];
-					var latC= current[lat_c];
-					var lngC= current[lng_c];
+					var latC= current[lat];
+					var lngC= current[lng];
 						latC =latC.replace(",",".");
 						lngC =lngC.replace(",",".");
-						coorC= [lngC, latC];
+						coorC= [latC, lngC];
 							//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
 						nomTall= current['NOMBRE TALLER'];
@@ -228,11 +213,11 @@ function showInfoc(marcadoresc) {
 function showInfod(marcadoresd) {
                        for (num=0; num<marcadoresd.length; num++)
 					   {current=marcadoresd[num];
-					var latD= current[lat_d];
-					var lngD= current[lng_d];
+					var latD= current[lat];
+					var lngD= current[lng];
 						latD =latD.replace(",",".");
 						lngD =lngD.replace(",",".");
-						coorD= [lngD, latD];
+						coorD= [latD, lngD];
 						
 						//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
@@ -253,11 +238,11 @@ function showInfod(marcadoresd) {
 function showInfoe(marcadorese) {
                        for (num=0; num<marcadorese.length; num++)
 					   {current=marcadorese[num];
-					var latE= current[lat_e];
-					var lngE= current[lng_e];
+					var latE= current[lat];
+					var lngE= current[lng];
 						latE =latE.replace(",",".");
 						lngE =lngE.replace(",",".");
-						coorE= [lngE, latE];
+						coorE= [latE, lngE];
 						
 						//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
@@ -279,11 +264,11 @@ function showInfoe(marcadorese) {
 function showInfof(marcadoresf) {
                        for (num=0; num<marcadoresf.length; num++)
 					   {current=marcadoresf[num];
-					var latF= current[lat_f];
-					var lngF= current[lng_f];
+					var latF= current[lat];
+					var lngF= current[lng];
 						latF =latF.replace(",",".");
 						lngF =lngF.replace(",",".");
-						coorF= [lngF, latF];
+						coorF= [latF, lngF];
 						
 						//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
@@ -305,11 +290,11 @@ function showInfof(marcadoresf) {
 function showInfog(marcadoresg) {
                        for (num=0; num<marcadoresg.length; num++)
 					   {current=marcadoresg[num];
-					var latG= current[lat_g];
-					var lngG= current[lng_g];
+					var latG= current[lat];
+					var lngG= current[lng];
 						latG =latG.replace(",",".");
 						lngG =lngG.replace(",",".");
-						coorG= [lngG, latG];
+						coorG= [latG, lngG];
 						
 		//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
@@ -331,11 +316,11 @@ function showInfog(marcadoresg) {
 function showInfoh(marcadoresh) {
                        for (num=0; num<marcadoresh.length; num++)
 					   {current=marcadoresh[num];
-					var latH= current[lat_h];
-					var lngH= current[lng_h];
+					var latH= current[lat];
+					var lngH= current[lng];
 						latH =latH.replace(",",".");
 						lngH =lngH.replace(",",".");
-						coorH= [lngH, latH];
+						coorH= [latH, lngH];
 						
 						//Iteración de los atributos extraídos:
 						progra= current['PROGRAMA'];
@@ -357,11 +342,11 @@ function showInfoh(marcadoresh) {
 function showInfoi(marcadoresi) {
                        for (num=0; num<marcadoresi.length; num++)
 					   {current=marcadoresi[num];
-					var latI= current[lat_i];
-					var lngI= current[lng_i];
+					var latI= current[lat];
+					var lngI= current[lng];
 						latI =latI.replace(",",".");
 						lngI =lngI.replace(",",".");
-						coorI= [lngI, latI];
+						coorI= [latI, lngI];
 						
 					
 						//Iteración de los atributos extraídos:
@@ -384,11 +369,11 @@ function showInfoi(marcadoresi) {
 function showInfoj(marcadoresj) { 
                        for (num=0; num<marcadoresj.length; num++)
 					   {current=marcadoresj[num];
-					var latJ= current[lat_j];
-					var lngJ= current[lng_j];
+					var latJ= current[lat];
+					var lngJ= current[lng];
 						latJ =latJ.replace(",",".");
 						lngJ =lngJ.replace(",",".");
-						coorJ= [lngJ, latJ];
+						coorJ= [latJ, lngJ];
 			
 						
 						//Iteración de los atributos extraídos:
@@ -405,10 +390,10 @@ function showInfoj(marcadoresj) {
 function showInfok(marcadoresk) { 
                        for (num=0; num<marcadoresk.length; num++)
 					   {current=marcadoresk[num];
-					var latK= current[lat_k];
-					var lngK= current[lng_k];
-						latK =latK.replace(",",".");
-						lngK =lngK.replace(",",".");
+					var latK= current[lat];
+					var lngK= current[lng];
+						//latK =latK.replace(",",".");
+						//lngK =lngK.replace(",",".");
 						coorK= [lngK, latK];
 					
 						//Iteración de los atributos extraídos:
@@ -427,11 +412,11 @@ function showInfok(marcadoresk) {
 function showInfol(marcadoresl) { 
                        for (num=0; num<marcadoresl.length; num++)
 					   {current=marcadoresl[num];
-					var latL= current[lat_l];
-					var lngL= current[lng_l];
+					var latL= current[lat];
+					var lngL= current[lng];
 						latL =latL.replace(",",".");
 						lngL =lngL.replace(",",".");
-						coorL= [lngL, latL];
+						coorL= [latL, lngL];
 						
 						//Iteración de los atributos extraídos:
 						nombBibl= current['Nombre']
@@ -448,11 +433,11 @@ function showInfol(marcadoresl) {
 function showInfom(marcadoresm) { 
                        for (num=0; num<marcadoresm.length; num++)
 					   {current=marcadoresm[num];
-					var latM= current[lat_m];
-					var lngM= current[lng_m];
+					var latM= current[lat];
+					var lngM= current[lng];
 						latM =latM.replace(",",".");
 						lngM =lngM.replace(",",".");
-						coorM= [lngM, latM];
+						coorM= [latM, lngM];
 				//Iteración de los atributos extraídos:
 						
 						lug=current['Ubicación campanas'];
@@ -470,11 +455,11 @@ function showInfom(marcadoresm) {
 function showInfon(marcadoresn) { 
                        for (num=0; num<marcadoresn.length; num++)
 					   {current=marcadoresn[num];
-					var latN= current[lat_n];
-					var lngN= current[lng_n];
+					var latN= current[lat];
+					var lngN= current[lng];
 					latN =latN.replace(",",".");
 						lngN =lngN.replace(",",".");
-						coorN= [lngN, latN];
+						coorN= [latN, lngN];
 				//Iteración de los atributos extraídos:
 						
 						nomEstabl=current['Establecimiento'];
@@ -493,11 +478,11 @@ function showInfon(marcadoresn) {
 function showInfoo(marcadoreso) { 
                        for (num=0; num<marcadoreso.length; num++)
 					   {current=marcadoreso[num];
-					var latO= current[lat_o];
-					var lngO= current[lng_o];
+					var latO= current[lat];
+					var lngO= current[lng];
 				//	latN =latN.replace(",",".");
 				//	lngN =lngN.replace(",",".");
-						coorO= [lngO, latO];
+						coorO= [latO, lngO];
 				//Iteración de los atributos extraídos:
 					lug=current['Lugar'];
 					queRecic=current['Material Reciclaje'];
@@ -517,11 +502,11 @@ function showInfoo(marcadoreso) {
 function showInfop(marcadoresp) { 
                        for (num=0; num<marcadoresp.length; num++)
 					   {current=marcadoresp[num];
-					var latP= current[lat_p];
-					var lngP= current[lng_p];
+					var latP= current[lat];
+					var lngP= current[lng];
 				latP =latP.replace(",",".");
 				lngP =lngP.replace(",",".");
-						coorP= [lngP, latP];
+						coorP= [latP, lngP];
 							//Iteración de los atributos extraídos:
 					lug=current['Nombre'];
 					queRecic=current['Que reciclar'];
@@ -537,11 +522,11 @@ function showInfop(marcadoresp) {
 function showInfoq(marcadoresq) { 
                        for (num=0; num<marcadoresq.length; num++)
 					   {current=marcadoresq[num];
-					var latQ= current[lat_q];
-					var lngQ= current[lng_q];
+					var latQ= current[lat];
+					var lngQ= current[lng];
 						latQ =latQ.replace(",",".");
 						lngQ =lngQ.replace(",",".");
-						coorQ= [lngQ, latQ];
+						coorQ= [latQ, lngQ];
 						//Iteración de los atributos extraídos:
 						numPara=current['N° de parada'];
 						lug=current['Nombre parada'];
@@ -558,11 +543,11 @@ function showInfoq(marcadoresq) {
 function showInfor(marcadoresr) { 
                        for (num=0; num<marcadoresr.length; num++)
 					   {current=marcadoresr[num];
-					var latR= current[lat_r];
-					var lngR= current[lng_r];
+					var latR= current[lat];
+					var lngR= current[lng];
 						latR =latR.replace(",",".");
 						lngR =lngR.replace(",",".");
-						coorR= [lngR, latR];
+						coorR= [latR, lngR];
 						//Iteración de los atributos extraídos:
 						lug=current['Nombre'];
 						status=current['Estado'];
@@ -577,11 +562,11 @@ function showInfor(marcadoresr) {
 function showInfos(marcadoress) { 
                        for (num=0; num<marcadoress.length; num++)
 					   {current=marcadoress[num];
-					var laT= current[latitud];
-					var lnG= current[longitud];
+					var laT= current[lat];
+					var lnG= current[lng];
 						laT =laT.replace(",",".");
 						lnG =lnG.replace(",",".");
-						coorde= [lnG, laT];
+						coorde= [laT, lnG];
 						//Iteración de los atributos extraídos:
 						lug= current['Lugar'];
 						tipo= current['Tipo'];
@@ -603,11 +588,11 @@ function showInfos(marcadoress) {
 function showInfot(marcadorest) { 
                       for (num=0; num<marcadorest.length; num++)
 					   {current=marcadorest[num];
-					var laT= current[latitud];
-					var lnG= current[longitud];
+					var laT= current[lat];
+					var lnG= current[lng];
 						laT =laT.replace(",",".");
 						lnG =lnG.replace(",",".");
-						coorde= [lnG, laT];
+						coorde= [laT, lnG];
 						//Iteración de los atributos extraídos:
 						lug= current['Lugar'];
 						tipo= current['Tipo'];
