@@ -46,7 +46,7 @@ var pacOleoduc= new L.LayerGroup();
 
 //Variable que agrupa los Layergroup que searán ejecutados en el Layer Control
 var overlays =
-{"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed, "Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct, "Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Certificación Ambiental de establecimientos educacionales":cerEstEdMun, "Establecimiento educacional punto verde": EEdPtoVer, "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
+{"Ciclovias": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer,  "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed,  "Establecimiento educacional punto verde": EEdPtoVer,"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct,  "Certificación Ambiental de establecimientos educacionales":cerEstEdMun,  "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
 
 //Variables globales que busca los atributos en google drive a través de Tabletop ( Por lo que me di cuenta en líneas y procesos posteriores, hice un montón de variables globales innecesarias para los bucle de las distintas funciones; las iteraciones de éstas últimas, quedan almacenadas en la variable o layer que forma un LayerGroup, sin influir al resto de ellas)
 
@@ -109,6 +109,14 @@ var barrio;
 // var gloables S
 var tipo, fecha;
 
+//var globales U V
+
+var comuAfect;
+var tipology;
+var titular;
+var inversion;
+
+
 
 	
 
@@ -135,6 +143,8 @@ var publicSpreadsheetUrlq='https://docs.google.com/spreadsheets/d/1En4PupkUwo2HU
 var publicSpreadsheetUrlr='https://docs.google.com/spreadsheets/d/1a314Q1QbaVDuF1NVjz_mhtQmehDypNDYXxM7-E0b_bM/edit#gid=0';
 var publicSpreadsheetUrls='https://docs.google.com/spreadsheets/d/1B8wIliqJh4u4Yd61oCGcD4OINzLU-qIDWcRGXGxcMzE/edit#gid=0';
 var publicSpreadsheetUrlt='https://docs.google.com/spreadsheets/d/1V8sicXr5pIs6qcKMCsO7pXdP8cP5dK6plLcn9901o7k/edit#gid=0';
+var publicSpreadsheetUrlu='https://docs.google.com/spreadsheets/d/1pHLRR8zfOthdP9tmjLLsSj2dzFfyMtDpZST2oA8UDeY/edit#gid=0';
+var publicSpreadsheetUrlv='https://docs.google.com/spreadsheets/d/1l3rIJtw2f520Z-mdwkR2DXvlUZiRcAdn2QJFw1hYy1U/edit#gid=0';
 
 // Iteración busca datos en el google drive a través de Tabletop
 
@@ -600,10 +610,59 @@ function showInfot(marcadorest) {
 					adress=current['Dirección'];
 						barrio=current['Barrio']
 						horari=current['Horario']
+						
 
 						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
       icon: 'user', 
       prefix: 'glyphicon', markerColor:'green'})}).addTo(pacOleoduc).bindPopup("<b>Tipo de participación ciudadana (PAC):</b><br>"+tipo+"<br><br><b>Fecha de realización</b><br>"+fecha+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horario</b><br>"+horari+"<br><br><b>Barrio</b><br>"+barrio+"<br><br><b>Dirección</b><br>"+adress)
+						
+					   }
+				   ;} 
+// U: EIA
+function showInfou(marcadoresu) { 
+                      for (num=0; num<marcadoresu.length; num++)
+					   {current=marcadoresu[num];
+					var laT= current[lat];
+					var lnG= current[lng];
+						laT =laT.replace(",",".");
+						lnG =lnG.replace(",",".");
+						coorde= [laT, lnG];
+						//Iteración de los atributos extraídos:
+					nomProy= current['NOMBRE_PROYECTO'];
+						status= current['ESTADO_EVALUACION'];
+						fecha=current['FECHA_PRESENTACION'];
+					tipology=current['NOMBRE_TIPOLOGIA'];
+						titular=current['TITULAR']
+						inversion=current['INVERSION_US']
+						comuAfect=current['COMUNAS']
+						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
+      icon: 'screenshot', 
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(eia).bindPopup("<b>Nombre proyecto:</b><br>"+nomProy+"<br><br><b>Fecha de presentación</b><br>"+fecha+"<br><br><b>Estado de evaluación</b><br>"+status+"<br><br><b>Comunas que afecta:</b><br>"+comuAfect+"<br><br><b>Tipo de proyecto</b><br>"+tipology+"<br><br><b>Titular</b><br>"+titular+"<br><br><b>Inversión</b><br>"+inversion)
+						
+					   }
+				   ;}  
+
+//V: DIA
+
+function showInfov(marcadoresv) { 
+                      for (num=0; num<marcadoresv.length; num++)
+					   {current=marcadoresv[num];
+					var laT= current[lat];
+					var lnG= current[lng];
+						laT =laT.replace(",",".");
+						lnG =lnG.replace(",",".");
+						coorde= [laT, lnG];
+						//Iteración de los atributos extraídos:
+						nomProy= current['NOMBRE_PROYECTO'];
+						status= current['ESTADO_EVALUACION'];
+						fecha=current['FECHA_PRESENTACION'];
+					tipology=current['NOMBRE_TIPOLOGIA'];
+						titular=current['TITULAR']
+						inversion=current['INVERSION_US']
+
+						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
+      icon: 'pushpin', 
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(flaco).bindPopup("<b>Nombre proyecto:</b><br>"+nomProy+"<br><br><b>Fecha de presentación</b><br>"+fecha+"<br><br><b>Estado de evaluación</b><br>"+status+"<br><br><b>Comunas que afecta:</b><br>"+comuAfect+"<br><br><b>Tipo de proyecto</b><br>"+tipology+"<br><br><b>Titular</b><br>"+titular+"<br><br><b>Inversión</b><br>"+inversion)
 						
 					   }
 				   ;}  
@@ -693,6 +752,17 @@ s = Tabletop.init( { key: publicSpreadsheetUrls,
 t = Tabletop.init( { key: publicSpreadsheetUrlt,
                    callback: showInfot,
                    simpleSheet: true }
+
+			  	) 
+u = Tabletop.init( { key: publicSpreadsheetUrlu,
+                   callback: showInfou,
+                   simpleSheet: true }
+
+			  	) 
+v = Tabletop.init( { key: publicSpreadsheetUrlv,
+                   callback: showInfov,
+                   simpleSheet: true }
+
 			  	) 
 
 };
