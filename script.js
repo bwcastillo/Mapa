@@ -43,10 +43,11 @@ var cerEstEdMun= new L.LayerGroup();
 var cultivaTuSalud= new L.LayerGroup();
 var pacTrenAlMel= new L.LayerGroup();
 var pacOleoduc= new L.LayerGroup();
+var contAceit= new L.LayerGroup();
 
 //Variable que agrupa los Layergroup que searán ejecutados en el Layer Control
 var overlays =
-{"Ciclovías": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Puntos verdes": PtoLim, "Mini punto verde": MinPtoVer,  "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed,  "Establecimiento educacional punto verde": EEdPtoVer,"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct,  "Certificación Ambiental de establecimientos educacionales":cerEstEdMun,  "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
+{"Ciclovías": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Puntos verdes": PtoLim, " Contenedores para reciclar aceites domiciliarios": contAceit, "Mini punto verde": MinPtoVer,  "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed,  "Establecimiento educacional punto verde": EEdPtoVer,"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct,  "Certificación Ambiental de establecimientos educacionales":cerEstEdMun,  "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
 
 //Variables globales que busca los atributos en google drive a través de Tabletop ( Por lo que me di cuenta en líneas y procesos posteriores, hice un montón de variables globales innecesarias para los bucle de las distintas funciones; las iteraciones de éstas últimas, quedan almacenadas en la variable o layer que forma un LayerGroup, sin influir al resto de ellas)
 
@@ -145,6 +146,9 @@ var publicSpreadsheetUrls='https://docs.google.com/spreadsheets/d/1B8wIliqJh4u4Y
 var publicSpreadsheetUrlt='https://docs.google.com/spreadsheets/d/1V8sicXr5pIs6qcKMCsO7pXdP8cP5dK6plLcn9901o7k/edit#gid=0';
 var publicSpreadsheetUrlu='https://docs.google.com/spreadsheets/d/1pHLRR8zfOthdP9tmjLLsSj2dzFfyMtDpZST2oA8UDeY/edit#gid=0';
 var publicSpreadsheetUrlv='https://docs.google.com/spreadsheets/d/1l3rIJtw2f520Z-mdwkR2DXvlUZiRcAdn2QJFw1hYy1U/edit#gid=0';
+var publicSpreadsheetUrlw='https://docs.google.com/spreadsheets/d/1X1eHLzv-1GeocOl6ID6LfcXMpO83RTSqgdhvsiLding/edit#gid=0';
+
+
 
 // Iteración busca datos en el google drive a través de Tabletop
 
@@ -186,13 +190,13 @@ function showInfob(marcadoresb) {
 						progra= current['PROGRAMA'];
 						nomTall= current['NOMBRE TALLER'];
 						lug= current['LUGAR'];
-						horari= current['DÍA - HORA'];
+						;
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
 						L.marker(coorB,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmMar).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmMar).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 					   }
 				   ;}
 // C: Educación ambiental abril 2017
@@ -215,7 +219,7 @@ function showInfoc(marcadoresc) {
 						
 			L.marker(coorC,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmAbr).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmAbr).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -240,7 +244,7 @@ function showInfod(marcadoresd) {
 						
 			L.marker(coorD,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmMay).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horarios</b><br>"+horari+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmMay).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller</b><br>"+nomTall+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Encargado</b><br>"+encar+"<br><br><b>Dirección</b><br>"+adress)
 					   }
 				   ;}
 	
@@ -265,7 +269,7 @@ function showInfoe(marcadorese) {
 						
 			L.marker(coorE,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edamjun).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edamjun).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -291,7 +295,7 @@ function showInfof(marcadoresf) {
 						
 			L.marker(coorF,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edamjul).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edamjul).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -317,7 +321,7 @@ function showInfog(marcadoresg) {
 						
 			L.marker(coorG,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmAgo).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmAgo).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -343,7 +347,7 @@ function showInfoh(marcadoresh) {
 						
 			L.marker(coorH,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmSep).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmSep).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -370,7 +374,7 @@ function showInfoi(marcadoresi) {
 						
 			L.marker(coorI,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
-      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmOct).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Horarios:</b><br>"+horari+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(edAmOct).bindPopup("<b>Programa:</b><br>"+progra+"<br><br> <b> Nombre del taller:</b><br>"+nomTall+"<br><br><b>Lugar:</b><br>"+lug+"<br><br><b>Encargado:</b><br>"+encar+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}
@@ -665,6 +669,25 @@ function showInfov(marcadoresv) {
       prefix: 'glyphicon', markerColor:'green'})}).addTo(flaco).bindPopup("<b>Nombre proyecto:</b><br>"+nomProy+"<br><br><b>Fecha de presentación</b><br>"+fecha+"<br><br><b>Estado de evaluación</b><br>"+status+"<br><br><b>Comunas que afecta:</b><br>"+comuAfect+"<br><br><b>Tipo de proyecto</b><br>"+tipology+"<br><br><b>Titular</b><br>"+titular+"<br><br><b>Inversión</b><br>"+inversion)
 						
 					   }
+				   ;} 
+//W : Contenedores de aceites
+function showInfow(marcadoresw) { 
+                       for (num=0; num<marcadoresw.length; num++)
+					   {current=marcadoresw[num];
+					var latP= current[lat];
+					var lngP= current[lng];
+				latP =latP.replace(",",".");
+				lngP =lngP.replace(",",".");
+						coorP= [latP, lngP];
+							//Iteración de los atributos extraídos:
+					lug=current['Nombre'];
+					queRecic=current['Que reciclar'];
+					adress=current['direccion'];
+					
+					L.marker(coorP, {icon: L.AwesomeMarkers.icon({
+      icon: 'filter',prefix: 'glyphicon', markerColor:'orange',spin:'true', iconColor : 'white',extraClasses: "data-fa-transform: shrink-8 down-6"})}).addTo(contAceit).bindPopup("<b>Nombre de la ubicación:</b><br>"+lug+"<br><br><b>Que reciclar:</b><br>"+queRecic+"<br><br><b>Dirección:</b><br>"+adress)
+						
+					   }
 				   ;}  
 						
 					
@@ -761,6 +784,11 @@ u = Tabletop.init( { key: publicSpreadsheetUrlu,
 			  	) 
 v = Tabletop.init( { key: publicSpreadsheetUrlv,
                    callback: showInfov,
+                   simpleSheet: true }
+
+			  	) 
+w = Tabletop.init( { key: publicSpreadsheetUrlw,
+                   callback: showInfow,
                    simpleSheet: true }
 
 			  	) 
