@@ -101,7 +101,7 @@ html, body, #mapid {
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-green w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-green w3-large w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-green w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
    
     <a href="#headinicio" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inicio</a>
     <a href="#comoFun" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Video tutorial</a>
@@ -113,11 +113,12 @@ html, body, #mapid {
 
   
   <!-- Navbar on small screens -->
-  <div id="#headinicio" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+  
+  <div id="otro" class="w3-bar-block w3-green w3-hide w3-hide-large w3-hide-medium w3-large ">
     <a href="#comoFun" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
-    <a href="#mapid" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-    <a href="#descInfo" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-     <a href="#google.calendar" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Calendario de actividades</a>
+    <a href="#mapid" class="w3-bar-item w3-button w3-padding-large">Ir al Mapa</a>
+    <a href="#descInfo" class="w3-bar-item w3-button w3-padding-large">Video tutorial</a>
+    <a href="#google.calendar" class="w3-bar-item w3-button w3-padding-large">Calendario de actividades</a>
 
   </div>
 </div>
@@ -125,7 +126,7 @@ html, body, #mapid {
 
 <!-- Header -->
 <div id="headinicio">
-<header class="w3-container w3-green w3-opacity w3-center" style="padding:128px 16px">
+<header class="w3-container w3-green w3-opacity w3-center w3-jumbo" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">BIENVENIDOS  AL MAPA DE LA SUBDIRECCIÓN DE MEDIO AMBIENTE MAIPÚ <i class="fab fa-envira" data-fa-transform="rotate--270"></i></h1>
   <p class="w3-xlarge">Podrás ver la información ambiental relacionada a tú barrio </p>
  <a href ="#mapid"> <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">IR AL MAPA</button></a>
@@ -133,18 +134,19 @@ html, body, #mapid {
 </div>
 
 
-	<div id="comoFun">
-<div class="w3-row-padding w3-padding-64 w3-container">
+	<div id="comoFun" class= "w3-display-container">
+<div class="w3-row-padding w3-padding-64 w3-container" >
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>¿Cómo funciona?</h1>
-      <h5 class="w3-padding-32">¡Es fácil! A continuación, te dejamos una pequeña animación que te enseña cómo poder visualizar la información relacionada a la gestión municipal del medio ambiente en la comuna.</h5>
-      <img src="maquetacion_inf.gif" class="w3-center" alt="Computer Man" style="width:560px;height:315px;"><br>
+      <h5 class="w3-padding-32" align="justify">¡Es fácil! A continuación, te dejamos una pequeña animación que te enseña cómo poder visualizar la información relacionada a la gestión municipal del medio ambiente en la comuna.</h5>
+      <img src="maquetacion_inf.gif" class="w3-container w3-center" alt="Computer Man" style="width:528px;height:297px;"><br><br>
+
 
 <!--<div class="video">
      <iframe width="560" height="315" src="https://www.youtube.com/embed/1ah71n_RSmw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>-->
      
-      <p class="w3-text-grey">Al momento de acceder al mapa, te encontrarás con un plano comunal dividido en 21 barrios, además de una tabla de contenidos posicionada en el sector izquierdo de tu pantalla. Al hacer click sobre uno de los contenidos que quieras revisar, se desplegarán íconos o marcadores sobre el mapa, si presionas sobre uno de ellos se abrirá una ventana emergente o "pop-up" con la información asociada a ese marcador.</br> También puedes acercar o alejar el mapa con los botones <i class="fas fa-plus-square"></i> o <i class="fas fa-minus-square"></i> respectivamente, por otra parte, la tabla de cotenidos puede volver a ser desplegada apretando el botón de la esquina inferior izquierda del mapa, y finalmente, si necesitas recargar la página, solamente presiona el botón  <i class=" fas fa-bars"></i> </p>
+      <p class="w3-text-grey" align="justify">Al momento de acceder al mapa, te encontrarás con un plano comunal dividido en 21 barrios, además de una tabla de contenidos posicionada en el sector izquierdo de tu pantalla. Al hacer click sobre uno de los contenidos que quieras revisar, se desplegarán íconos o marcadores sobre el mapa, si presionas sobre uno de ellos se abrirá una ventana emergente o "pop-up" con la información asociada a ese marcador.</br> También puedes acercar o alejar el mapa con los botones <i class="fas fa-plus-square"></i> o <i class="fas fa-minus-square"></i> respectivamente, por otra parte, la tabla de cotenidos puede volver a ser desplegada apretando el botón de la esquina inferior izquierda del mapa, y finalmente, si necesitas recargar la página, solamente presiona el botón  <i class=" fas fa-bars"></i> </p>
     </div> 
 </div>
    
@@ -185,9 +187,10 @@ html, body, #mapid {
 
     <div class="w3-twothird">
       <h1>Descripción de la información</h1>
-      <h5 class="w3-padding-32">La información ha sido generada por la Subdirección de Medio Ambiente Maipú (SDMA) en el proceso de la Certificación Ambiental Municipal otorgado por el ministerio de Medio Ambiente.</h5>
+      <h5 class="w3-padding-32" align="justify">La información ha sido generada por la Subdirección de Medio Ambiente Maipú (SDMA) en el proceso de la Certificación Ambiental Municipal otorgado por el ministerio de Medio Ambiente.</h5>
+      <p class="w3-text-grey" align="justify">La ilustre municipalidad de Maipú por intermedio de la subdirección de medioambiente (SDMA) perteneciente a la Dirección de Aseo, Ornato y Gestión Ambiental (DAOGA), ha sido el organismo encargado de promover y llevar a cabo distintas actividades que incentivan el cuidado y protección del medioambiente comunal, a través de distintas iniciativas e intervenciones de carácter ambiental, tales como reciclaje, huertos orgánicos, energías renovables, evaluación de proyectos (según la presente institucionalidad), además permitiendo el trabajo vinculante entre los diferentes actores. 
+      <br><br>
 
-      <p class="w3-text-grey">La ilustre municipalidad de Maipú por intermedio de la subdirección de medioambiente (SDMA) perteneciente a la Dirección de Aseo, Ornato y Gestión Ambiental (DAOGA), ha sido el organismo encargado de promover y llevar a cabo distintas actividades que incentivan el cuidado y protección del medioambiente comunal, a través de distintas iniciativas e intervenciones de carácter ambiental, tales como reciclaje, huertos orgánicos, energías renovables, evaluación de proyectos (según la presente institucionalidad), además permitiendo el trabajo vinculante entre los diferentes actores. 
       La información presente en el mapa de este sitio web, consiste en la recopilación, sistematización y georreferenciación de las diferentes intervenciones ya mencionada y realizadas por la SDMA dentro del territorio municipal con el fin de proporcionar e informar a la comunidad en general. </p>
     </div>
   </div>
@@ -244,13 +247,14 @@ function carousel() {
 <script>
 // Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
-    var x = document.getElementById("navDemo");
+    var x = document.getElementById("otro");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
     } else { 
         x.className = x.className.replace(" w3-show", "");
     }
-}</script>
+}
+</script>
 
 
 </body>
