@@ -4,17 +4,8 @@ var mymap = L.map('mapid',{maxBounds:[
     [-33.328620, -70.939942],
     [-33.619460, -70.700762]
 ]}).setView([-33.532898, -70.756266], 12); /*-33.5359312, -70.789277*/
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Autor: Bryan Castillo M.', minZoom:10 ,maxZoom: 17, id: 'mapbox.streets',accessToken: 'pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'}).addTo(mymap);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Autor:Bryan Castillo M. - Geografía', minZoom:10 ,maxZoom: 17, id: 'mapbox.streets',accessToken: 'pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'}).addTo(mymap);
 	
-
-	
-/*L.Routing.control({
-	router: L.Routing.mapbox('pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'), 
-	geocoder: 
-    }).addTo(mymap)*/
-	
-	
-
 //Llamo al objeto geoJson base "Barrios" que está fijado en el mapa mymap
 L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000", dashArray: '3',fill: "false", fillOpacity: 0.1}).addTo(mymap);
 
@@ -44,10 +35,12 @@ var cultivaTuSalud= new L.LayerGroup();
 var pacTrenAlMel= new L.LayerGroup();
 var pacOleoduc= new L.LayerGroup();
 var contAceit= new L.LayerGroup();
+/*var overlayX= new L.LayerGroup();
+var overlayY= new L.LayerGroup(); */
 
 //Variable que agrupa los Layergroup que searán ejecutados en el Layer Control
 var overlays =
-{"Ciclovías": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Puntos verdes": PtoLim, " Contenedores para reciclar aceites domiciliarios": contAceit, "Mini punto verde": MinPtoVer,  "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed,  "Establecimiento educacional punto verde": EEdPtoVer,"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct,  "Certificación Ambiental de establecimientos educacionales":cerEstEdMun,  "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc};
+{"Ciclovías": bicis, "Campanas de vidrio (reciclaje)": Campvid,"Puntos verdes": PtoLim, " Contenedores para reciclar aceites domiciliarios": contAceit, "Mini punto verde": MinPtoVer,  "Ecobibliotecas": BiblVerd, "Sedes sustentables":EcoSed,  "Establecimiento educacional punto verde": EEdPtoVer,"Proyectos con Declaración de Impacto Ambiental (DIA)": flaco,"Proyectos con Estudios de Impacto Ambiental (EIA)": eia, "Educación ambiental marzo 2017": edAmMar, "Educación ambiental abril 2017": edAmAbr,"Educación ambiental mayo 2017":edAmMay, "Educación ambiental junio 2017":edamjun, "Educación ambiental julio 2017":edamjul, "Educación ambiental agosto 2017":edAmAgo, "Educación ambiental septiembre 2017":edAmSep, "Educación ambiental octubre 2017":edAmOct,  "Certificación Ambiental de establecimientos educacionales":cerEstEdMun,  "Ruta del agua":rutaAgua, "Actividades Emblemáticas":grupo, "Programa Cultiva tu Salud":cultivaTuSalud, "Participación ciudadana proyecto Tren Melipilla Alamaeda": pacTrenAlMel, "Participación ciudadana proyecto Segunda Línea Oleoducto M-AAMB":pacOleoduc, /*Nombre de la capa X a desplegar: overlayX, Nombre de la capa Y a desplegar: overlayY*/ };
 
 //Variables globales que busca los atributos en google drive a través de Tabletop ( Por lo que me di cuenta en líneas y procesos posteriores, hice un montón de variables globales innecesarias para los bucle de las distintas funciones; las iteraciones de éstas últimas, quedan almacenadas en la variable o layer que forma un LayerGroup, sin influir al resto de ellas)
 
@@ -109,21 +102,21 @@ var numPara;
 var barrio;
 // var gloables S
 var tipo, fecha;
-
 //var globales U V
-
 var comuAfect;
 var tipology;
 var titular;
 var inversion;
 
+/* // Variables globales  de X e Y 
+var nombreDeVariableGlobalX;
+var otraVariableGlobalX;
+var nombreDeVariableGlobalY;
+var otraVariableGlobalY;*/
 
-
-	
 
 
 // Variable que hace referencia a la tabla drive 
-	
 var publicSpreadsheetUrla = 'https://docs.google.com/spreadsheets/d/1dtaMxRz7RRBZU8nkaiBRSd-8kPShVRgVzEpYdA-vMGg/edit#gid=0';
 var publicSpreadsheetUrlb= 'https://docs.google.com/spreadsheets/d/14B9n-n1y6knJtSEE0t6fGuH9nLr3lkfMaxUZ5Cq9yVQ/edit#gid=0';
 var publicSpreadsheetUrlc= 'https://docs.google.com/spreadsheets/d/1v1daCCv9QxPWye6-QErr5H4O_Kz0YPXslXOGPoQtSBY/edit#gid=0';
@@ -148,6 +141,12 @@ var publicSpreadsheetUrlu='https://docs.google.com/spreadsheets/d/1pHLRR8zfOthdP
 var publicSpreadsheetUrlv='https://docs.google.com/spreadsheets/d/1l3rIJtw2f520Z-mdwkR2DXvlUZiRcAdn2QJFw1hYy1U/edit#gid=0';
 var publicSpreadsheetUrlw='https://docs.google.com/spreadsheets/d/1X1eHLzv-1GeocOl6ID6LfcXMpO83RTSqgdhvsiLding/edit#gid=0';
 
+/* 
+
+var publicSpreadsheetUrlx= 'LINK DE LA HOJA EN MODO PÚBLICO';
+var publicSpreadsheetUrlY= 'LINK DE LA HOJA EN MODO PÚBLICO';
+
+*/
 
 
 // Iteración busca datos en el google drive a través de Tabletop
@@ -165,10 +164,11 @@ function showInfoa(marcadoresa) {
 						
 		//Iteración de los atributos extraídos:
 						
-						nomEstabl=current['Nombre del Establecimiento']
-						;
+						nomEstabl=current['Nombre del Establecimiento'];
 						lvlCert=current['Nivel de Certificación obtenido'];
 						adress=current['direccion'];
+						
+		//Creación de los marcadores
 						
 						L.marker(coorA,{icon: L.AwesomeMarkers.icon({
       icon: 'education', 
@@ -193,6 +193,8 @@ function showInfob(marcadoresb) {
 						;
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
+		
+		//Creación de los marcadores
 						
 						L.marker(coorB,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -216,6 +218,7 @@ function showInfoc(marcadoresc) {
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
+			//Creación de los marcadores
 						
 			L.marker(coorC,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -241,6 +244,7 @@ function showInfod(marcadoresd) {
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
+			//Creación de los marcadores
 						
 			L.marker(coorD,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -266,6 +270,7 @@ function showInfoe(marcadorese) {
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
+				//Creación de los marcadores
 						
 			L.marker(coorE,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -292,6 +297,7 @@ function showInfof(marcadoresf) {
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
+						//Creación de los marcadores
 						
 			L.marker(coorF,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -318,6 +324,7 @@ function showInfog(marcadoresg) {
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
+						//Creación de los marcadores
 						
 			L.marker(coorG,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -344,6 +351,7 @@ function showInfoh(marcadoresh) {
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
 						
+						//Creación de los marcadores
 						
 			L.marker(coorH,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -370,7 +378,8 @@ function showInfoi(marcadoresi) {
 						horari= current['DÍA - HORA'];
 						encar= current['ENCARGADO'];
 						adress = current ['direccion'];
-						
+				
+						//Creación de los marcadores
 						
 			L.marker(coorI,{icon: L.AwesomeMarkers.icon({
       icon: 'tree-deciduous', 
@@ -393,6 +402,8 @@ function showInfoj(marcadoresj) {
 						//Iteración de los atributos extraídos:
 						lug= current['LUGAR'];
 						adress = current ['direccion'];
+						
+						//Creación de los marcadores
 							
 						L.marker(coorJ,{icon: L.AwesomeMarkers.icon({
       icon: 'apple', 
@@ -411,9 +422,11 @@ function showInfok(marcadoresk) {
 						coorK= [lngK, latK];
 					
 						//Iteración de los atributos extraídos:
-						nomProy= current['Nombre del proyecto']
-						descProy= current ['Descripción del proyecto']
-						adress=current['direccion']
+						nomProy= current['Nombre del proyecto'];
+						descProy= current ['Descripción del proyecto'];
+						adress=current['direccion'];
+						
+						//Creación de los marcadores
 						
 						L.marker(coorK,{icon: L.AwesomeMarkers.icon({
       icon: 'certificate', 
@@ -433,9 +446,11 @@ function showInfol(marcadoresl) {
 						coorL= [latL, lngL];
 						
 						//Iteración de los atributos extraídos:
-						nombBibl= current['Nombre']
-						horari= current ['Horarios']
-						adress=current['direccion']
+						nombBibl= current['Nombre'];
+						horari= current ['Horarios'];
+						adress=current['direccion'];
+						
+						//Creación de los marcadores
 					
 						L.marker(coorL,{icon: L.AwesomeMarkers.icon({
       icon: 'book', 
@@ -456,7 +471,9 @@ function showInfom(marcadoresm) {
 						
 						lug=current['Ubicación campanas'];
 						tipoEnv=current['Tipos de envases'];
-						adress=current['direccion']
+						adress=current['direccion'];
+						
+						//Creación de los marcadores
 						
 						L.marker(coorM,{icon: L.AwesomeMarkers.icon({
       icon: 'bell', 
@@ -481,6 +498,8 @@ function showInfon(marcadoresn) {
 						adress=current['direccion'];
 						
 						
+						//Creación de los marcadores
+						
 						L.marker(coorN,{icon: L.AwesomeMarkers.icon({
       icon: 'cloud-upload', 
       prefix: 'glyphicon', markerColor:'darkgreen'})}).addTo(EEdPtoVer).bindPopup("<b>Nombre del establecimiento:</b><br>"+nomEstabl+"<br><br><b>Estado del punto limpio:</b><br>"+status+"<br><br><b>Dirección:</b><br>"+adress)
@@ -503,6 +522,8 @@ function showInfoo(marcadoreso) {
 					adress=current['direccion'];
 					horari=current['Horario de atención'];
 					encar=current['Contacto'];
+						
+						//Creación de los marcadores
 					
 				
 						L.marker(coorO,{icon: L.AwesomeMarkers.icon({
@@ -525,6 +546,8 @@ function showInfop(marcadoresp) {
 					lug=current['Nombre'];
 					queRecic=current['Que reciclar'];
 					adress=current['direccion'];
+						
+						//Creación de los marcadores
 					
 					L.marker(coorP, {icon: L.AwesomeMarkers.icon({
       icon: 'globe',prefix: 'glyphicon', markerColor:'green',spin:'true', iconColor : 'white',extraClasses: "data-fa-transform: shrink-8 down-6"})}).addTo(PtoLim).bindPopup("<b>Nombre de la ubicación:</b><br>"+lug+"<br><br><b>Que reciclar:</b><br>"+queRecic+"<br><br><b>Dirección:</b><br>"+adress)
@@ -546,6 +569,8 @@ function showInfoq(marcadoresq) {
 						lug=current['Nombre parada'];
 						adress=current['direccion'];
 						
+						//Creación de los marcadores
+						
 						L.marker(coorQ,{icon: L.AwesomeMarkers.icon({
       icon: 'flag', 
       prefix: 'glyphicon', markerColor:'lightblue',iconColor: 'yellow'})}).addTo(rutaAgua).bindPopup("<b>Número de parada:</b><br>"+numPara+"<br><br><b>Nombre de la parada:</b><br>"+lug+"<br><br><b>Dirección:</b><br>"+adress)
@@ -566,6 +591,9 @@ function showInfor(marcadoresr) {
 						lug=current['Nombre'];
 						status=current['Estado'];
 					barrio=current['Barrio'];	adress=current['direccion'];
+						
+						//Creación de los marcadores
+						
 						L.marker(coorR,{icon: L.AwesomeMarkers.icon({
       icon: 'home', 
       prefix: 'glyphicon', markerColor:'green'})}).addTo(EcoSed).bindPopup("<b>Nombre de la sede:</b><br>"+lug+"<br><br><b>Vigencia:</b><br>"+status+"<br><br><b>Barrio:</b><br>"+barrio+"<br><br><b>Dirección:</b><br>"+adress)
@@ -586,10 +614,9 @@ function showInfos(marcadoress) {
 						tipo= current['Tipo'];
 						fecha=current['Fecha'];
 					adress=current['Dirección'];
-						barrio=current['Barrio']
+						barrio=current['Barrio'];
 
-						
-						
+						//Creación de los marcadores
 					
 						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
       icon: 'user', 
@@ -612,13 +639,13 @@ function showInfot(marcadorest) {
 						tipo= current['Tipo'];
 						fecha=current['Fecha'];
 					adress=current['Dirección'];
-						barrio=current['Barrio']
-						horari=current['Horario']
+						barrio=current['Barrio'];
 						
+						//Creación de los marcadores
 
 						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
       icon: 'user', 
-      prefix: 'glyphicon', markerColor:'green'})}).addTo(pacOleoduc).bindPopup("<b>Tipo de participación ciudadana (PAC):</b><br>"+tipo+"<br><br><b>Fecha de realización</b><br>"+fecha+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Horario</b><br>"+horari+"<br><br><b>Barrio</b><br>"+barrio+"<br><br><b>Dirección</b><br>"+adress)
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(pacOleoduc).bindPopup("<b>Tipo de participación ciudadana (PAC):</b><br>"+tipo+"<br><br><b>Fecha de realización</b><br>"+fecha+"<br><br><b>Lugar</b><br>"+lug+"<br><br><b>Barrio</b><br>"+barrio+"<br><br><b>Dirección</b><br>"+adress)
 						
 					   }
 				   ;} 
@@ -636,9 +663,12 @@ function showInfou(marcadoresu) {
 						status= current['ESTADO_EVALUACION'];
 						fecha=current['FECHA_PRESENTACION'];
 					tipology=current['NOMBRE_TIPOLOGIA'];
-						titular=current['TITULAR']
-						inversion=current['INVERSION_US']
-						comuAfect=current['COMUNAS']
+						titular=current['TITULAR'];
+						inversion=current['INVERSION_US'];
+						comuAfect=current['COMUNAS'];
+						
+						//Creación de los marcadores
+						
 						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
       icon: 'screenshot', 
       prefix: 'glyphicon', markerColor:'green'})}).addTo(eia).bindPopup("<b>Nombre proyecto:</b><br>"+nomProy+"<br><br><b>Fecha de presentación</b><br>"+fecha+"<br><br><b>Estado de evaluación</b><br>"+status+"<br><br><b>Comunas que afecta:</b><br>"+comuAfect+"<br><br><b>Tipo de proyecto</b><br>"+tipology+"<br><br><b>Titular</b><br>"+titular+"<br><br><b>Inversión</b><br>"+inversion)
@@ -661,8 +691,11 @@ function showInfov(marcadoresv) {
 						status= current['ESTADO_EVALUACION'];
 						fecha=current['FECHA_PRESENTACION'];
 					tipology=current['NOMBRE_TIPOLOGIA'];
-						titular=current['TITULAR']
-						inversion=current['INVERSION_US']
+						titular=current['TITULAR'];
+						inversion=current['INVERSION_US'];
+						comuAfect=current['COMUNAS'];
+						
+						//Creación de los marcadores
 
 						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
       icon: 'pushpin', 
@@ -683,12 +716,60 @@ function showInfow(marcadoresw) {
 					lug=current['Nombre'];
 					queRecic=current['Que reciclar'];
 					adress=current['direccion'];
+						
+						//Creación de los marcadores
 					
 					L.marker(coorP, {icon: L.AwesomeMarkers.icon({
       icon: 'filter',prefix: 'glyphicon', markerColor:'orange',spin:'true', iconColor : 'white',extraClasses: "data-fa-transform: shrink-8 down-6"})}).addTo(contAceit).bindPopup("<b>Nombre de la ubicación:</b><br>"+lug+"<br><br><b>Que reciclar:</b><br>"+queRecic+"<br><br><b>Dirección:</b><br>"+adress)
 						
 					   }
 				   ;}  
+
+//X : Nueva capa de info X
+
+/*function showInfox(marcadoresx) { 
+                       for (num=0; num<marcadoresx.length; num++)
+					   {current=marcadoresx[num];
+					var laT= current[lat];
+					var lnG= current[lng];
+						laT =laT.replace(",",".");
+						lnG =lnG.replace(",",".");
+						coorde= [laT, lnG];
+							//Iteración de los atributos extraídos:
+					nombreDeVariableGlobalX=current['NOMBRE DEL ATRIBUTO EN LA TABLA DE GOOGLE DOCS'];
+					otraVariableGlobalX=current['NOMBRE DEL ATRIBUTO EN LA TABLA DE GOOGLE DOCS'];
+					
+					//Creación de los marcadores
+					
+							L.marker(coorde,{icon: L.AwesomeMarkers.icon({
+      icon: 'pushpin', 
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(overlayX).bindPopup("<b>Títúlo I:</b><br>"+nombreDeVariableGlobalX+"<br><br><b>Título II</b><br>"+otraVariableGlobalX)
+						
+					   }
+				   ;} 
+				   
+//Y : Nueva capa de info Y
+
+function showInfoy(marcadoresy) { 
+                       for (num=0; num<marcadoresy.length; num++)
+					   {current=marcadoresy[num];
+						var laT= current[lat];
+						var lnG= current[lng];
+						laT =laT.replace(",",".");
+						lnG =lnG.replace(",",".");
+						coorde= [laT, lnG];
+							//Iteración de los atributos extraídos:
+					nombreDeVariableGlobalY=current['NOMBRE DEL ATRIBUTO DE LA TABLA EN GOOGLE DOCS'];
+					otraVariableGlobalY=current['NOMBRE DEL ATRIBUTO DE LA TABLA EN GOOGLE DOCS'];
+					
+					//Creación de los marcadores
+					
+						L.marker(coorde,{icon: L.AwesomeMarkers.icon({
+      icon: 'pushpin', 
+      prefix: 'glyphicon', markerColor:'green'})}).addTo(noverlayY).bindPopup("<b>Títúlo I:</b><br>"+nombreDeVariableGlobalY+"<br><br><b>Título II</b><br>"+otraVariableGlobalY)
+						
+					   }
+				   ;}  */
 						
 					
 
@@ -792,6 +873,16 @@ w = Tabletop.init( { key: publicSpreadsheetUrlw,
                    simpleSheet: true }
 
 			  	) 
+/* x = Tabletop.init( { key: publicSpreadsheetUrlx,
+                   callback: showInfox,
+                   simpleSheet: true }
+
+			  	)  */
+/* y = Tabletop.init( { key: publicSpreadsheetUrly,
+                   callback: showInfoy,
+                   simpleSheet: true }
+
+			  	) */
 
 };
 

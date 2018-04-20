@@ -22,8 +22,6 @@
  
 <!--Librería Popper.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -34,6 +32,7 @@
 
 <!-- Font Awesome -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
 <!--Hoja de estilos y librería leafletAwesomeMarkers--> 
 <link rel="stylesheet" href="dist/leaflet.awesome-markers.css"/>
 <script src="dist/leaflet.awesome-markers.js"></script>
@@ -42,18 +41,20 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
  
  <!--Easy Icon LeafLet-->
- 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
 <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
  
 <!--Objetos GeoJson -->
- <script type="text/javascript" src="ciclovia.js"></script>
- <script type="text/javascript" src="barrios.js"></script>
+<script type="text/javascript" src="ciclovia.js"></script>
+<script type="text/javascript" src="barrios.js"></script>
  
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Estilos de la página web y mapa-->
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -90,7 +91,6 @@ html, body, #mapid {
     margin-right: auto;
     ;
 }
-
 	</style>
 </head>
 
@@ -102,12 +102,10 @@ html, body, #mapid {
 <div class="w3-top">
   <div class="w3-bar w3-green w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-green w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-   
     <a href="#headinicio" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Inicio</a>
     <a href="#comoFun" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Video tutorial</a>
     <a href="#mapid" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Ir al mapa</a>
     <a href="#descInfo" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Descripción de la información</a>
-    <a href="#google.calendar" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Calendario de actividades</a>
   </div>
 
 
@@ -119,8 +117,6 @@ html, body, #mapid {
     <a href="#comoFun" class="w3-bar-item w3-button w3-padding-large">Video tutorial</a>
     <a href="#mapid" class="w3-bar-item w3-button w3-padding-large">Ir al Mapa</a>
     <a href="#descInfo" class="w3-bar-item w3-button w3-padding-large">Descripción de la infiromación</a>
-    <a href="#google.calendar" class="w3-bar-item w3-button w3-padding-large">Calendario de actividades</a>
-
   </div>
 </div>
 
@@ -143,9 +139,6 @@ html, body, #mapid {
       <h5 class="w3-padding-32" align="justify">¡Es fácil! A continuación, te dejamos una pequeña animación que te enseña cómo poder visualizar la información relacionada a la gestión municipal del medio ambiente en la comuna.</h5>
       <img src="maquetacion_inf.gif" class="w3-container w3-center" alt="Computer Man" style="width:528px;height:297px;"><br><br>
 
-
-<!--<div class="video">
-     <iframe width="560" height="315" src="https://www.youtube.com/embed/1ah71n_RSmw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>-->
      
       <p class="w3-text-grey" align="justify">Al momento de acceder al mapa, te encontrarás con un plano comunal dividido en 21 barrios, además de una tabla de contenidos posicionada en el sector izquierdo de tu pantalla. Al hacer click sobre uno de los contenidos que quieras revisar, se desplegarán íconos o marcadores sobre el mapa, si presionas sobre uno de ellos se abrirá una ventana emergente o "pop-up" con la información asociada a ese marcador.</br> También puedes acercar o alejar el mapa con los botones <i class="fas fa-plus-square"></i> o <i class="fas fa-minus-square"></i> respectivamente, por otra parte, la tabla de cotenidos puede volver a ser desplegada apretando el botón de la esquina inferior izquierda del mapa, y finalmente, si necesitas recargar la página, solamente presiona el botón  <i class=" fas fa-bars"></i> </p>
     </div> 
@@ -157,16 +150,20 @@ html, body, #mapid {
   </div>
 </div>
 
-
+ <!--  AQUI APARECE EL TÍTULO  DEL MAPA WEB --->
 <div><header id= "cabecera" > <h1 >Gestión ambiental territorial de la Ilustre Municipalidad de Maipú <i class="far fa-map"></i></h1> </header></div>
+
 <div id="mapid">
-<script src="dist/leaflet-routing-machine.js"></script>
+
+ <!--  AQUÍ SE LLAMA AL SCRIPT QUE CREA EL MAPA WEB --->
 
 	<script src="script.js"></script>
 
 <!-- Boton del mapa que recarga la página -->
 
 <script> 
+	
+	//Botón que recarga el sitio web: En caso de cambiar el servidor, cambiar la url asociada
 	 var newDocLocation = "https://bwcastillo.github.io/Mapa/";
 	L.easyButton( 'fas fa-bars', function(){
         window.location.href = newDocLocation;
