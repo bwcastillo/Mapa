@@ -5,6 +5,8 @@ var mymap = L.map('mapid',{maxBounds:[
     [-33.619460, -70.700762]
 ]}).setView([-33.532898, -70.756266], 12); /*-33.5359312, -70.789277*/
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Autor:Bryan Castillo M. - Geografía', minZoom:10 ,maxZoom: 17, id: 'mapbox.streets',accessToken: 'pk.eyJ1IjoiYndjYXN0aWxsbyIsImEiOiJjaXpxZ2s5ZTcwMWptMzJueWJ5dW03cWxwIn0.Sod29kk9UzEzM1ZGfRi1VQ'}).addTo(mymap);
+
+
 	
 //Llamo al objeto geoJson base "Barrios" que está fijado en el mapa mymap
 L.geoJson(barrios,{ onEachFeature: popup,weight: 2, opacity: 1, color: "#000000", dashArray: '3',fill: "false", fillOpacity: 0.1}).addTo(mymap);
@@ -894,3 +896,28 @@ L.control.layers(overlays).addTo(mymap).setPosition('bottomleft').expand();
 	
 //Llamo al objeto GeoJson de ciclovías
 L.geoJson(bicivias,{color:  '#FFFFFF',dashArray: '8',}).addTo(bicis);
+
+	L.Routing.control({
+  waypoints: [
+    L.latLng(-33.522416, -70.780884),
+    L.latLng(-33.494768, -70.756224)
+  ]
+}).addTo(mymap);
+
+//GEOCODIFICADOR LEAFLET
+/*L.Control.geocoder().addTo(mymap);
+var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: false
+    })
+    .on('markgeocode', function(e) {
+        var bbox = e.geocode.bbox;
+        var poly = L.polygon([
+             bbox.getSouthEast(),
+             bbox.getNorthEast(),
+             bbox.getNorthWest(),
+             bbox.getSouthWest()
+        ]).addTo(mymap);
+        map.fitBounds(poly.getBounds());
+    })
+    .addTo(mymap);*/
+
